@@ -125,7 +125,7 @@ fi
 source /usr/share/bash-completion/completions/git
 __git_complete g __git_main
 
-# Environment variables
+# Environment variables:
 
 # Haskell
 export PATH="$HOME/.cabal/bin:$PATH"
@@ -136,10 +136,6 @@ export PATH="$HOME/bin:$PATH"
 # p4merge
 export PATH="/usr/local/bin:$PATH"
 
-# Github
-export GITHUB_USER=jojva
-export GITHUB_USER_TOKEN=hidden
-
 # Setup "fuck" (smart command correction)
 eval $(thefuck --alias)
 # Setup starship (pretty prompt)
@@ -148,7 +144,5 @@ eval "$(starship init bash)"
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Algolia config:
-if [ -f ~/.algoliarc ]; then
-    . ~/.algoliarc
-fi
+# Secrets:
+. ~/.secretsrc
