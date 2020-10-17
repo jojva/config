@@ -1,0 +1,68 @@
+[user]
+	name = Joris Valette
+	email = joris.valette@algolia.com
+
+[core]
+	editor = geany
+	autocrlf = false
+	filemode = false
+	excludesfile = /home/joris/.gitignore
+
+[log]
+    decorate = auto
+
+[branch]
+	autosetuprebase = always
+
+[merge]
+	tool = p4merge
+    conflictstyle = diff3
+[mergetool]
+	prompt = false
+	keepBackup = false
+[mergetool "p4merge"]
+    cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+
+[alias]
+	# Misc
+	alias = config --get-regexp ^alias\\.
+	br = branch
+	c = clone --recurse-submodules
+	co = checkout
+	cp = cherry-pick
+	unstage = reset HEAD --
+	# Status
+	s = status -sb
+	st = status
+	# Log
+	l = log --date=format:'%d/%m/%Y %H:%M' --pretty=format:'%C(auto)%h %C(bold magenta)%ad %C(bold blue)%an%C(auto)%d %C(auto)%s' --graph --all
+	ll = log --decorate --oneline --graph
+	lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --graph --all
+	glop = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short --graph --all
+	topo = log --simplify-by-decoration --graph --oneline --all
+	# Commit
+	ci = commit --reedit-message=@ --reset-author
+	tmp = "!f() { git commit --no-verify -am \"TMP: $1\"; }; f"
+	commend = commit --amend --no-edit
+	# Diff
+	df = diff
+	dfc = diff --cached
+	# Stash
+	sl = stash list
+	stp = stash show -p
+	# Rebase
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	# Clean
+	cl = clean -dff
+	clx = clean -dffX
+	pristine = !git reset --hard -q && git clean -dffxq
+	upstream = reset --hard @{u}
+	# Push/pull
+	pu = pull --prune
+	prb = pull --rebase
+	please = push --force-with-lease
+	# Worktrees
+	wr = !sh -c 'git worktree remove $0'
+	wl = worktree list
