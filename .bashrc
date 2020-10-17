@@ -94,15 +94,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias g='git'
-source /usr/share/bash-completion/completions/git
-__git_complete g __git_main
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-alias watch='watch --color -n 0.1'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -128,55 +119,36 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=~/.cargo/bin:$PATH
+# Joris config follows:
 
-alias c='code .'
-alias n='ninja -C build'
-alias ninjalgolia='ninja -j1 -C build geoip && ninja -j10 -C build'
+# Git completions
+source /usr/share/bash-completion/completions/git
+__git_complete g __git_main
 
-alias update='sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade && sudo apt autoremove && sudo apt autoclean '
+# Environment variables
 
-alias refull='rerelease ; redebug ; resanitize'
-alias rerelease='cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && ninjalgolia'
-alias redebug='cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && ninjalgolia'
-alias redefault='cmake -H. -Bbuild -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && ninjalgolia'
-alias resanitize='cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Sanitize -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && ninjalgolia'
-alias full='release ; debug ; sanitize'
-alias release='ninjalgolia'
-alias debug='ninjalgolia'
-alias default='ninjalgolia'
-alias sanitize='ninjalgolia'
-
-# For DUO access
-export AUSER=jvalette
-
-# To add silversearcher's colors to ripgrep
-alias rg='rg --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold'
-
-eval $(thefuck --alias)
-
+# Haskell
 export PATH="$HOME/.cabal/bin:$PATH"
+# Rust
+export PATH=~/.cargo/bin:$PATH
+# Trello and multimarkdown
+export PATH="$HOME/bin:$PATH"
+# p4merge
+export PATH="/usr/local/bin:$PATH"
 
-export MAIL=joris.valette@algolia.com
-
-# For deployment
-export VAULT_ADDR=https://vault-elb.algolia.net:8200
-export VAULT_USERNAME="joris.valette"
-export VAULT_PASSWORD="hidden"
-export VAULT_TOKEN=$(vault token lookup | grep -E '^id' | rev | cut -d' ' -f1 | rev)
-# If I need to login into vault again, I need to use this:
-# vault login -method=userpass username=$VAULT_USERNAME password=$VAULT_PASSWORD
-
-# For Github
+# Github
 export GITHUB_USER=jojva
 export GITHUB_USER_TOKEN=hidden
-export CONFLUENCE_TOKEN=hidden
 
+# Setup "fuck" (smart command correction)
+eval $(thefuck --alias)
+# Setup starship (pretty prompt)
 eval "$(starship init bash)"
 
-# For Trello and multimarkdown
-export PATH="$HOME/bin:$PATH"
-
-# For p4merge
-export PATH="/usr/local/bin:$PATH"
+# FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Algolia config:
+if [ -f ~/.algoliarc ]; then
+    . ~/.algoliarc
+fi

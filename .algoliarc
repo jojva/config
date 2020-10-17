@@ -1,1 +1,23 @@
-# TODO
+# For DUO access
+export AUSER=jvalette
+
+# For merge commits apparently
+export MAIL=joris.valette@algolia.com
+
+# For deployment
+export VAULT_ADDR=https://vault-elb.algolia.net:8200
+export VAULT_USERNAME="joris.valette"
+export VAULT_PASSWORD="hidden"
+export VAULT_TOKEN=$(vault token lookup | grep -E '^id' | rev | cut -d' ' -f1 | rev)
+# If I need to login into vault again, I need to use this:
+# vault login -method=userpass username=$VAULT_USERNAME password=$VAULT_PASSWORD
+
+# Confluence
+export CONFLUENCE_TOKEN=hidden
+
+alias n='ninja -C build'
+alias afull='adebug ; arelease ; asanitize'
+alias arelease='cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && n'
+alias adebug='cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && n'
+alias adefault='cmake -H. -Bbuild -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && n'
+alias asanitize='cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Sanitize -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && n'
