@@ -14,6 +14,9 @@
 [branch]
 	autosetuprebase = always
 
+[diff]
+	renameLimit = 5000
+
 [merge]
 	tool = p4merge
     conflictstyle = diff3
@@ -50,17 +53,21 @@
 	# Stash
 	sl = stash list
 	stp = stash show -p
+	ss = !sh -c 'git stash show -p stash@{$0}'
+	sp = !sh -c 'git stash push -m "$0"'
+	sg = stash --staged
 	# Rebase
 	rb = rebase
 	rba = rebase --abort
 	rbc = rebase --continue
+	rbm = !sh -c 'git co master && git pu && git co - && git rb master'
 	# Clean
 	cl = clean -dff
 	clx = clean -dffX
 	pristine = !git reset --hard -q && git clean -dffxq
 	upstream = reset --hard @{u}
 	# Push/pull
-	pu = pull --prune
+	pu = pull --prune --tags
 	prb = pull --rebase
 	please = push --force-with-lease
 	# Worktrees

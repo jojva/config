@@ -127,6 +127,12 @@ __git_complete g __git_main
 
 # Environment variables:
 
+# Go
+export GOPATH="/home/joris/go"
+export PATH="/home/joris/go:$PATH"
+export PATH="/home/joris/go/bin:$PATH"
+export GO111MODULE=on
+export GOPROXY="https://proxy.golang.org,direct"
 # Haskell
 export PATH="$HOME/.cabal/bin:$PATH"
 # Rust
@@ -146,3 +152,8 @@ eval "$(starship init bash)"
 
 # Secrets:
 . ~/.secretsrc
+source "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
