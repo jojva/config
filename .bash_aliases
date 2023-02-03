@@ -1,4 +1,5 @@
 alias lx='exa --long --all -@ --time-style long-iso --color-scale'
+alias code='GTK_IM_MODULE="xim" code'
 alias c='code .'
 alias g='git'
 alias k9s='k9s --kubeconfig ~/.kube/config'
@@ -13,7 +14,7 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 # Algolia
-alias ninja='/home/joris/dev/mold/mold -run ninja'
+alias ninja='/home/joris/dev/mold/build/mold -run ninja'
 alias nd='ninja -C build/debug'
 alias nr='ninja -C build/release'
 alias ns='ninja -C build/sanitize'

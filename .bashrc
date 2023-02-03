@@ -129,10 +129,10 @@ __git_complete g __git_main
 
 # Go
 export GOPATH="/home/joris/go"
-export PATH="/home/joris/go:$PATH"
 export PATH="/home/joris/go/bin:$PATH"
 export GO111MODULE=on
 export GOPROXY="https://proxy.golang.org,direct"
+export GOPRIVATE="github.com/algolia"
 # Haskell
 export PATH="$HOME/.cabal/bin:$PATH"
 # Rust
@@ -141,11 +141,13 @@ export PATH=~/.cargo/bin:$PATH
 export PATH="$HOME/bin:$PATH"
 # p4merge
 export PATH="/usr/local/bin:$PATH"
+# ssh-key-signer client
+export PATH="/home/joris/bin:$PATH"
+# p4merge
+export PATH="/home/joris/bin/p4merge/bin:$PATH"
 
 # Setup "fuck" (smart command correction)
-eval $(thefuck --alias)
-# Setup starship (pretty prompt)
-eval "$(starship init bash)"
+# eval $(thefuck --alias)
 
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -157,3 +159,18 @@ source "$HOME/.cargo/env"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "$HOME/.cargo/env"
+
+# For pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --no-rehash -)"
+eval "$(pyenv virtualenv-init -)"
+
+# For the python repo
+export PYTHONPATH="/home/joris/workspace/python/projects"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/joris/bin/google-cloud-sdk/path.bash.inc' ]; then . '/home/joris/bin/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/joris/bin/google-cloud-sdk/completion.bash.inc' ]; then . '/home/joris/bin/google-cloud-sdk/completion.bash.inc'; fi

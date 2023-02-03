@@ -16,6 +16,8 @@
 
 [diff]
 	renameLimit = 5000
+[diff "lfs"]
+	textconv = cat
 
 [merge]
 	tool = p4merge
@@ -25,6 +27,9 @@
 	keepBackup = false
 [mergetool "p4merge"]
     cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+
+[push]
+	autoSetupRemote = true
 
 [alias]
 	# Misc
@@ -37,6 +42,9 @@
 	# Status
 	s = status -sb
 	st = status
+	# Branch
+	main-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+	m = "!f(){ git checkout $(git main-branch) $@;}; f"
 	# Log
 	l = log --date=format:'%d/%m/%Y %H:%M' --pretty=format:'%C(auto)%h %C(bold magenta)%ad %C(bold blue)%an%C(auto)%d %C(auto)%s' --graph --all
 	ll = log --decorate --oneline --graph
@@ -47,6 +55,7 @@
 	ci = commit --reedit-message=@ --reset-author
 	tmp = "!f() { git commit --no-verify -am \"TMP: $1\"; }; f"
 	commend = commit --amend --no-edit
+	fmt = !sh -c 'git diff -U0 --no-prefix --no-color $(git merge-base origin/master HEAD)..HEAD -- '*.cpp' '*.h' | clang-format-diff-14 -style file -i'
 	# Diff
 	df = diff
 	dfc = diff --cached
@@ -60,7 +69,7 @@
 	rb = rebase
 	rba = rebase --abort
 	rbc = rebase --continue
-	rbm = !sh -c 'git co master && git pu && git co - && git rb master'
+	rbm = "!f(){ git co $(git main-branch) && git pu && git co - && git rb $(git main-branch);}; f"
 	# Clean
 	cl = clean -dff
 	clx = clean -dffX
@@ -79,3 +88,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[init]
+	defaultBranch = master
+[url "git@github.com:"]
+	insteadOf = https://github.com/
