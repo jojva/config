@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=firefox -P pro
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Firefox pro
+Name=Firefox
+Comment[en_US]=
+Comment=

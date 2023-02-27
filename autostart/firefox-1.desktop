@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=firefox -P perso
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Firefox perso
+Name=Firefox perso
+Comment[en_US]=
+Comment=
