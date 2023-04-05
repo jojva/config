@@ -27,9 +27,16 @@ pyenv local 3.10
 # Go
 
 Follow instructions here https://go.dev/doc/install but replace `/usr/local/...` by `~/...`
+```bash
+goversion=1.20.3
+wget https://go.dev/dl/go${goversion}.linux-amd64.tar.gz
+rm -rf ~/go && tar -C ~ -xzf go${goversion}.linux-amd64.tar.gz
+go version
+```
+
 For `golangci-lint` specifically I'm using this: https://golangci-lint.run/usage/install/#linux-and-windows
 ```bash
-curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.51.1
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin latest
 ```
 
 # AlgoliaSaaS
