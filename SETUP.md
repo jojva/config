@@ -28,9 +28,9 @@ pyenv local 3.10
 
 Follow instructions here https://go.dev/doc/install but replace `/usr/local/...` by `~/...`
 ```bash
-goversion=1.20.3
+goversion=1.20.4
 wget https://go.dev/dl/go${goversion}.linux-amd64.tar.gz
-rm -rf ~/go && tar -C ~ -xzf go${goversion}.linux-amd64.tar.gz
+sudo rm -rf ~/go && tar -C ~ -xzf go${goversion}.linux-amd64.tar.gz
 go version
 ```
 

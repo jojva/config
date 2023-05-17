@@ -2,6 +2,7 @@ alias lx='exa --long --all -@ --time-style long-iso --color-scale'
 alias code='GTK_IM_MODULE="xim" code'
 alias c='code .'
 alias g='git'
+alias k='kubectl'
 alias k9s='k9s --kubeconfig ~/.kube/config'
 # To add silversearcher's colors to ripgrep
 alias rg='rg --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold'
