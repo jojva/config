@@ -28,7 +28,7 @@ pyenv local 3.10
 
 Follow instructions here https://go.dev/doc/install.
 ```bash
-goversion=1.20.6
+goversion=1.21.2
 wget https://go.dev/dl/go${goversion}.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go${goversion}.linux-amd64.tar.gz
 go version
@@ -37,6 +37,14 @@ go version
 For `golangci-lint` specifically I'm using this: https://golangci-lint.run/usage/install/#linux-and-windows
 ```bash
 curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin latest
+```
+
+# Docker
+
+Installed via the convenience script:
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 ```
 
 # AlgoliaSaaS
