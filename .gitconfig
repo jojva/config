@@ -30,6 +30,7 @@
 
 [push]
 	autoSetupRemote = true
+	default = current
 
 [alias]
 	# Misc

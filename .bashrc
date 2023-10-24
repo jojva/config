@@ -129,10 +129,11 @@ __git_complete g __git_main
 
 # Go
 export GOPATH="/home/joris/go"
-export PATH="/home/joris/go/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin:/home/joris/go/bin
 export GO111MODULE=on
 export GOPROXY="https://proxy.golang.org,direct"
 export GOPRIVATE="github.com/algolia"
+export GOGC=5
 # Haskell
 export PATH="$HOME/.cabal/bin:$PATH"
 # Rust
@@ -145,6 +146,10 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/home/joris/bin:$PATH"
 # p4merge
 export PATH="/home/joris/bin/p4merge/bin:$PATH"
+# k9s
+export PATH="/home/joris/dev/k9s/execs:$PATH"
+# include-what-you-use
+export PATH="/home/joris/dev/include-what-you-use/build/bin:$PATH"
 
 # Setup "fuck" (smart command correction)
 # eval $(thefuck --alias)
@@ -174,3 +179,15 @@ if [ -f '/home/joris/bin/google-cloud-sdk/path.bash.inc' ]; then . '/home/joris/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/joris/bin/google-cloud-sdk/completion.bash.inc' ]; then . '/home/joris/bin/google-cloud-sdk/completion.bash.inc'; fi
+
+export LLVM_SYMBOLIZER_PATH="/usr/lib/llvm-16/bin"
+
+# To edit files with nano in k9s instead of vim
+export EDITOR=nano
+
+# fnm (node manager)
+export PATH="/home/joris/.local/share/fnm:$PATH"
+eval "$(fnm env --use-on-cd)"
+
+# Yarn
+export PATH="$(yarn global bin):$PATH"
