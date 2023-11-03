@@ -26,18 +26,7 @@ pyenv local 3.10
 
 # Go
 
-Follow instructions here https://go.dev/doc/install.
-```bash
-goversion=1.21.2
-wget https://go.dev/dl/go${goversion}.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go${goversion}.linux-amd64.tar.gz
-go version
-```
-
-For `golangci-lint` specifically I'm using this: https://golangci-lint.run/usage/install/#linux-and-windows
-```bash
-curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin latest
-```
+See [go_install.sh](go_install.sh).
 
 # Node
 
