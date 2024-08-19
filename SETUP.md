@@ -70,6 +70,10 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
+# AWS CLI
+
+Installed by following the instructions here: https://algolia.atlassian.net/wiki/spaces/TTPB/pages/4612030465/AWS+User+Guide#CLI
+
 # AlgoliaSaaS
 
 ```bash

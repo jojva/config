@@ -191,3 +191,9 @@ eval "$(fnm env --use-on-cd)"
 
 # Yarn
 export PATH="$(yarn global bin):$PATH"
+
+# Curl
+export PATH="/home/joris/dev/curl/src:$PATH"
+
+# AWS CLI
+export AWS_PROFILE=metis-dev

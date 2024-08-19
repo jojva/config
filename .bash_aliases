@@ -1,3 +1,8 @@
+wf () {
+	cluster_name="$1"
+	firefox -p pro "https:\//metrics.wavefront.com/dashboards/cluster-analysis\#_v01\(g:(d:172800,ls:!t,s:1695729037,w:'2d'),p:(cluster:(l:'Cluster%20regex',v:'${cluster_name}-*'),cluster-name:${cluster_name}))" &
+}
+
 alias lx='exa --long --all -@ --time-style long-iso --color-scale'
 alias code='GTK_IM_MODULE="xim" code'
 alias c='code .'
@@ -15,7 +20,7 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 # Algolia
-alias ninja='/home/joris/dev/mold/build/mold -run ninja'
+alias ninja='/home/joris/dev/mold/build/mold -run ninja -j 6'
 alias nd='ninja -C build/debug'
 alias nr='ninja -C build/release'
 alias ns='ninja -C build/sanitize'
