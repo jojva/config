@@ -138,7 +138,7 @@ export GOGC=5
 export PATH="$HOME/.cabal/bin:$PATH"
 # Rust
 export PATH=~/.cargo/bin:$PATH
-# Trello and multimarkdown
+# Trello, multimarkdown, and ssh-key-signer
 export PATH="$HOME/bin:$PATH"
 # p4merge
 export PATH="/usr/local/bin:$PATH"

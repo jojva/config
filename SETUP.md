@@ -62,6 +62,15 @@ sudo apt-get update
 sudo apt-get install k6
 ```
 
+# k3d (k8s in docker)
+
+Installed by following the instructions here: https://k3d.io/stable/#installation.
+Installs the program in /usr/local/bin.
+
+```bash
+curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+```
+
 # Docker
 
 Installed via the convenience script:
@@ -70,9 +79,14 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
+# Docker Desktop
+
+Installed by following the instructions here: https://docs.docker.com/desktop/setup/install/linux/ubuntu/.
+Basically I just downloaded the deb and dpkg-installed it, since docker was already installed.
+
 # AWS CLI
 
-Installed by following the instructions here: https://algolia.atlassian.net/wiki/spaces/TTPB/pages/4612030465/AWS+User+Guide#CLI
+Installed by following the instructions here: https://algolia.atlassian.net/wiki/spaces/TTPB/pages/4612030465/AWS+User+Guide#CLI.
 
 # AlgoliaSaaS
 
