@@ -96,3 +96,7 @@ cp tools/lldb/lldbinit.sample ~/.lldbinit
 subl ~/.lldbinit # -> replace with `command script import /home/joris/workspace/a/tools/lldb/formatters.py`
 subl /etc/sysctl.d/10-ptrace.conf # and replace "kernel.yama.ptrace_scope = 1" with "kernel.yama.ptrace_scope = 0"
 ```
+
+# gcloud (Google Cloud SDK)
+
+Installed with snap, to get automatic updates: https://cloud.google.com/sdk/docs/downloads-snap.
