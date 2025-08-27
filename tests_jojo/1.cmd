@@ -44,7 +44,11 @@ batchSynonyms wait <<EOF
 ]
 EOF
 
-addObject wait <<< '{ "objectID": "A", "desc": "foo" }'
+batchAddObject '{"objectID": "A", "desc": "foo" }'
+batchAddObject '{"objectID": "B", "desc": "foo" }'
+batchAddObject '{"objectID": "C", "desc": "foo" }'
+
+sendCurrentBatch 'wait'
 
 query "foo" "getRankingInfo=true&explain=match.alternatives"
 

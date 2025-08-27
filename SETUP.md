@@ -39,8 +39,6 @@ curl -fsSL https://fnm.vercel.app/install | bash
 curl -fsSL https://fnm.vercel.app/install | bash --skip-shell
 # Remove fnm
 rm -rf ~/.fnm
-# Shell setup, add this to ~/.bashrc:
-eval "$(fnm env --use-on-cd)"
 ```
 
 # Yarn
