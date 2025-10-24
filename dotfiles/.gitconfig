@@ -6,7 +6,7 @@
 	editor = geany
 	autocrlf = false
 	filemode = false
-	excludesfile = /home/joris/.gitignore
+	excludesfile = ~/.gitignore
 
 [log]
     decorate = auto

@@ -124,8 +124,8 @@ __git_complete g __git_main
 # Environment variables:
 
 # Go
-export GOPATH="/home/joris/go"
-export PATH=$PATH:/usr/local/go/bin:/home/joris/go/bin
+export GOPATH="~/go"
+export PATH=$PATH:/usr/local/go/bin:~/go/bin
 export GO111MODULE=on
 export GOPROXY="https://proxy.golang.org,direct"
 export GOPRIVATE="github.com/algolia"
@@ -139,13 +139,13 @@ export PATH="$HOME/bin:$PATH"
 # p4merge
 export PATH="/usr/local/bin:$PATH"
 # ssh-key-signer client
-export PATH="/home/joris/bin:$PATH"
+export PATH="~/bin:$PATH"
 # p4merge
-export PATH="/home/joris/bin/p4merge/bin:$PATH"
+export PATH="~/bin/p4merge/bin:$PATH"
 # k9s
-export PATH="/home/joris/dev/k9s/execs:$PATH"
+export PATH="~/dev/k9s/execs:$PATH"
 # include-what-you-use
-export PATH="/home/joris/dev/include-what-you-use/build/bin:$PATH"
+export PATH="~/dev/include-what-you-use/build/bin:$PATH"
 
 # Setup "fuck" (smart command correction)
 # eval $(thefuck --alias)
@@ -165,13 +165,13 @@ eval "$(pyenv init --no-rehash -)"
 eval "$(pyenv virtualenv-init -)"
 
 # For the python repo
-export PYTHONPATH="/home/joris/workspace/python/projects"
+export PYTHONPATH="~/workspace/python/projects"
 
 # To edit files with nano in k9s instead of vim
 export EDITOR=nano
 
 # fnm (node manager)
-FNM_PATH="/home/joris/.local/share/fnm"
+FNM_PATH="~/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
@@ -181,7 +181,7 @@ fi
 export PATH="$(yarn global bin):$PATH"
 
 # Curl
-export PATH="/home/joris/dev/curl/src:$PATH"
+export PATH="~/dev/curl/src:$PATH"
 
 # AWS CLI
 export AWS_PROFILE=metis-dev

@@ -41,15 +41,13 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 # Algolia
-alias ninja='/home/joris/dev/mold/build/mold -run ninja -j 6'
+alias ninja='~/dev/mold/build/mold -run ninja -j 6'
 alias nd='ninja -C build/Debug'
 alias nr='ninja -C build/Release'
 alias afull='adebug ; arelease ; asanitize'
 alias arelease='cmake -H. -Bbuild/release -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && nr'
 alias adebug='cmake -H. -Bbuild/debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && nd'
 alias asanitize='cmake -H. -Bbuild/sanitize -DCMAKE_BUILD_TYPE=Sanitize -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && ns'
-# alias aiwyu='cmake -H. -Bbuild/debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_CXX_INCLUDE_WHAT_YOU_USE="include-what-you-use;-w;-Xiwyu;--error_always;-Xiwyu;--mapping_file=/usr/lib/llvm-16/include/c++/v1/libcxx.imp;-Xiwyu;--transitive_includes_only" -GNinja && nd'
-alias aiwyu='cmake -H. -Bbuild/debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_CXX_INCLUDE_WHAT_YOU_USE="include-what-you-use;-w;-Xiwyu;--error_always;-Xiwyu;--mapping_file=/home/joris/workspace/libcxx.imp;-Xiwyu;--transitive_includes_only" -GNinja && nd'
 alias ee='sudo killall BuildServer ; sudo killall -9 nginx ; ./tools/launch_builder.sh & ./test/e2e/launch_nginx.sh &'
 alias cpj='cp -r ~/workspace/config/tests_jojo/ ~/workspace/AlgoliaSaaS/test/e2e/'
 
