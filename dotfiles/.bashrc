@@ -100,12 +100,8 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f "$HOME/.bash_aliases" ]; then
+    source "$HOME/.bash_aliases"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -155,16 +151,12 @@ export PATH="/home/joris/dev/include-what-you-use/build/bin:$PATH"
 # eval $(thefuck --alias)
 
 # FZF
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source "$HOME/.fzf.bash"
 
 # Secrets:
-. ~/.secretsrc
-source "$HOME/.cargo/env"
+source "$HOME/.secretsrc"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "$HOME/.cargo/env"
+source "$HOME/.cargo/env"
 
 # For pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -174,20 +166,16 @@ eval "$(pyenv virtualenv-init -)"
 
 # For the python repo
 export PYTHONPATH="/home/joris/workspace/python/projects"
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/joris/bin/google-cloud-sdk/path.bash.inc' ]; then . '/home/joris/bin/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/joris/bin/google-cloud-sdk/completion.bash.inc' ]; then . '/home/joris/bin/google-cloud-sdk/completion.bash.inc'; fi
-
-export LLVM_SYMBOLIZER_PATH="/usr/lib/llvm-16/bin"
 
 # To edit files with nano in k9s instead of vim
 export EDITOR=nano
 
 # fnm (node manager)
-export PATH="/home/joris/.local/share/fnm:$PATH"
-eval "$(fnm env --use-on-cd)"
+FNM_PATH="/home/joris/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
 
 # Yarn
 export PATH="$(yarn global bin):$PATH"
@@ -197,3 +185,8 @@ export PATH="/home/joris/dev/curl/src:$PATH"
 
 # AWS CLI
 export AWS_PROFILE=metis-dev
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/snap/google-cloud-cli/current/path.bash.inc' ]; then . '/snap/google-cloud-cli/current/path.bash.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/snap/google-cloud-cli/current/completion.bash.inc' ]; then . '/snap/google-cloud-cli/current/completion.bash.inc'; fi

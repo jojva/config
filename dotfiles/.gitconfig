@@ -80,6 +80,8 @@
 	pu = pull --prune --tags
 	prb = pull --rebase
 	please = push --force-with-lease
+	fpush = "!f() { GIT_LFS_SKIP_PUSH=1 git push \"$@\"; }; f"
+	fplease = "!f() { git fpush --force-with-lease \"$@\"; }; f"
 	# Worktrees
 	wr = !sh -c 'git worktree remove $0'
 	wl = worktree list
