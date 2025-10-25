@@ -1,5 +1,21 @@
 # System
 
+## Useful packages
+
+```
+brew install --cask
+  alt-tab \
+  dropbox \
+  firefox \
+  ghostty \
+  slack \
+  spotify
+```
+
+Configure alt-tab (the app) to use ⌘ and not ⌥.
+
+Also install doll (https://github.com/xiaogdgenuine/Doll) to see Slack notifs in the menu bar.
+
 ## Startup apps
 
 System Settings -> General -> Login Items and Extensions, add the apps:
@@ -10,14 +26,15 @@ System Settings -> General -> Login Items and Extensions, add the apps:
 - Slack
 - Spotify
 
-FIREFOX PRO AND PERSO HOW I DID IT
-
 ## Misc
 
 ```
 # Disable annoying login message
 touch ~/.hushlogin
 ```
+
+Remap alt-tab through windows to ⌘ + @ instead of ⌘ + `:
+System Settings → Keyboard → Keyboard Shortcuts → Keyboard → Move focus to next window → remap to ⌘ + @.
 
 # AlgoliaSaaS
 
