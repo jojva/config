@@ -1,4 +1,4 @@
-# Ubuntu
+# System
 
 ## Startup apps
 
@@ -12,6 +12,15 @@ sudo pro config set apt_news=false
 
 # Install necessary packages
 sudo apt install pssh
+```
+
+# AlgoliaSaaS
+
+```bash
+mkdir .vscode && cp -r tools/environments/*.json .vscode/
+cp tools/lldb/lldbinit.sample ~/.lldbinit
+subl ~/.lldbinit # -> replace with `command script import ~/workspace/a/tools/lldb/formatters.py`
+subl /etc/sysctl.d/10-ptrace.conf # and replace "kernel.yama.ptrace_scope = 1" with "kernel.yama.ptrace_scope = 0"
 ```
 
 # Python
@@ -85,15 +94,6 @@ Basically I just downloaded the deb and dpkg-installed it, since docker was alre
 # AWS CLI
 
 Installed by following the instructions here: https://algolia.atlassian.net/wiki/spaces/TTPB/pages/4612030465/AWS+User+Guide#CLI.
-
-# AlgoliaSaaS
-
-```bash
-mkdir .vscode && cp -r tools/environments/*.json .vscode/
-cp tools/lldb/lldbinit.sample ~/.lldbinit
-subl ~/.lldbinit # -> replace with `command script import ~/workspace/a/tools/lldb/formatters.py`
-subl /etc/sysctl.d/10-ptrace.conf # and replace "kernel.yama.ptrace_scope = 1" with "kernel.yama.ptrace_scope = 0"
-```
 
 # gcloud (Google Cloud SDK)
 
