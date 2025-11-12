@@ -1,15 +1,27 @@
-wf () {
+ddog () {
+	if [ $# -ne 1 ]
+	then
+		echo "Missing a cluster name"
+		return 1
+	fi
 	cluster_name="$1"
-	firefox -p pro "https:\//metrics.wavefront.com/dashboards/cluster-analysis\#_v01\(g:(d:172800,ls:!t,s:1695729037,w:'2d'),p:(cluster:(l:'Cluster%20regex',v:'${cluster_name}-*'),cluster-name:${cluster_name}))" &
+	/Applications/Firefox.app/Contents/MacOS/firefox -P "pro" --no-remote "https://alg-classic-search.datadoghq.com/dashboard/j8u-r3y-u4w/cluster-analysis?tpl_var_cluster-name%5B0%5D=${cluster_name}&tpl_var_cluster-regex%5B0%5D=${cluster_name}-*&live=true" &
 }
 
 algoliasaas_setup () {
-	if [ "$1" == "debug" ]; then
-		build_profile="ubuntu-noble_debug"
+	# Detect OS
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		os_prefix="osx"
+	else
+		os_prefix="ubuntu-noble"
+	fi
+
+	if [ "$1" = "debug" ]; then
+		build_profile="${os_prefix}_debug"
 		build_path="build/Debug"
 		build_preset="conan-debug"
-	elif [ "$1" == "release" ]; then
-		build_profile="ubuntu-noble_release"
+	elif [ "$1" = "release" ]; then
+		build_profile="${os_prefix}_release"
 		build_path="build/Release"
 		build_preset="conan-release"
 	else
@@ -19,11 +31,13 @@ algoliasaas_setup () {
 	source .venv/bin/activate
 	conan install . --profile="$build_profile" --profile:build="$build_profile" --build=missing
 	source "$build_path/generators/conanbuild.sh"
-	deactivate
 	cmake --preset "$build_preset"
 	cmake --build -j 6 --preset "$build_preset"
+	deactivate
 }
 
+alias ls='ls -GhF --color=auto'
+alias ll='ls -al'
 alias lx='exa --long --all -@ --time-style long-iso --color-scale'
 alias code='GTK_IM_MODULE="xim" code'
 alias c='code .'
