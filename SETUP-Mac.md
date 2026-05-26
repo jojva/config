@@ -1,5 +1,11 @@
 # System
 
+## Keyboard layout
+
+Choose "French - PC" when I use my own keyboard and "French" when I use the built-in keyboard.
+
+Useful: remove the backtick ` dead key: install Ukelele, copy the "French - PC" keyboard layout, and then remove the dead key.
+
 ## Useful packages
 
 ```
