@@ -3,7 +3,7 @@
 	email = joris.valette@algolia.com
 
 [core]
-	editor = geany
+	editor = code --wait
 	autocrlf = false
 	filemode = false
 	excludesfile = ~/.gitignore
@@ -27,6 +27,15 @@
 	keepBackup = false
 [mergetool "p4merge"]
     cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+
+# [merge]
+# 	tool = vscode
+# 	conflictstyle = diff3
+# [mergetool]
+# 	prompt = false
+# 	keepBackup = false
+# [mergetool "vscode"]
+# 	cmd = code --wait --merge "$REMOTE" "$LOCAL" "$BASE" "$MERGED"
 
 [push]
 	autoSetupRemote = true
@@ -70,7 +79,7 @@
 	rb = rebase
 	rba = rebase --abort
 	rbc = rebase --continue
-	rbm = "!f(){ git co $(git main-branch) && git pu && git co - && git rb $(git main-branch);}; f"
+	rbm = "!f(){ git fetch origin $(git main-branch) && git rb origin/$(git main-branch);}; f"
 	# Clean
 	cl = clean -dff
 	clx = clean -dffX

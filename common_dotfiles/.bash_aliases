@@ -33,7 +33,22 @@ algoliasaas_setup () {
 	source "$build_path/generators/conanbuild.sh"
 	cmake --preset "$build_preset"
 	cmake --build -j 6 --preset "$build_preset"
-	deactivate
+}
+
+algoliasaas_build() {
+	if [ "$1" = "debug" ]; then
+		build_path="build/Debug"
+		build_preset="conan-debug"
+	elif [ "$1" = "release" ]; then
+		build_path="build/Release"
+		build_preset="conan-release"
+	else
+		echo "Usage: algoliasaas_build <debug|release>"
+		return 1
+	fi
+	source .venv/bin/activate
+	source "$build_path/generators/conanbuild.sh"
+	cmake --build -j 6 --preset "$build_preset"
 }
 
 alias ls='ls -GhF --color=auto'
@@ -46,6 +61,7 @@ alias k='kubectl'
 alias k9s='k9s --kubeconfig ~/.kube/config'
 # To add silversearcher's colors to ripgrep
 alias rg='rg --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold'
+alias ssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias update='sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade && sudo apt autoremove && sudo apt autoclean '
 alias watch='watch --color -n 0.1'
 alias ..="cd .."
@@ -55,7 +71,7 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 # Algolia
-alias ninja='~/dev/mold/build/mold -run ninja -j 6'
+# alias ninja='~/dev/mold/build/mold -run ninja -j 6'
 alias nd='ninja -C build/Debug'
 alias nr='ninja -C build/Release'
 alias afull='adebug ; arelease ; asanitize'
@@ -68,5 +84,5 @@ alias cpj='cp -r ~/workspace/config/tests_jojo/ ~/workspace/AlgoliaSaaS/test/e2e
 # AlgoliaSaaS with Conan
 alias asd='algoliasaas_setup debug'
 alias asr='algoliasaas_setup release'
-alias abd='cmake --build -j 6 --preset conan-debug'
-alias abr='cmake --build -j 6 --preset conan-release'
+alias abd='algoliasaas_build debug'
+alias abr='algoliasaas_build release'
