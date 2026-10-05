@@ -5,7 +5,7 @@ ddog () {
 		return 1
 	fi
 	cluster_name="$1"
-	/Applications/Firefox.app/Contents/MacOS/firefox -P "pro" --no-remote "https://alg-classic-search.datadoghq.com/dashboard/j8u-r3y-u4w/cluster-analysis?tpl_var_cluster-name%5B0%5D=${cluster_name}&tpl_var_cluster-regex%5B0%5D=${cluster_name}-*&live=true" &
+	open -na Firefox --args -P algolia "https://alg-classic-search.datadoghq.com/dashboard/j8u-r3y-u4w/cluster-analysis?tpl_var_cluster-name%5B0%5D=${cluster_name}&tpl_var_cluster-regex%5B0%5D=${cluster_name}-*&live=true"
 }
 
 algoliasaas_setup () {
