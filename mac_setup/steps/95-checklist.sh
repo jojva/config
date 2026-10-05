@@ -38,7 +38,9 @@ for profile in algolia perso; do
         "Open Firefox $profile and sign in (passwords are on my phone, in the same profile), then restore the tabs from about:firefoxview" \
         firefox_signed_in $profile
 done
-todo "~/.secretsrc is filled" "Copy the secrets from the previous Mac" secrets_filled
+todo "~/.secretsrc is filled" \
+    "Feel free to fill it with API keys and tokens (GitHub, Jira, Datadog...), it's sourced by .zshrc and not versioned" \
+    secrets_filled
 
 info "Can't be checked: fenêtre, Rectangle and Doll must be allowed in"
 info "System Settings → Privacy & Security → Accessibility"

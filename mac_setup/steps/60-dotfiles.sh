@@ -15,7 +15,7 @@ if [[ -e ~/.secretsrc ]]; then
 elif is_dry_run; then
     info "[dry-run] would create an empty ~/.secretsrc"
 else
-    print '# Secrets sourced by ~/.zshrc (not versioned), e.g. export SOME_TOKEN=...' > ~/.secretsrc
+    print '# API keys and tokens (GitHub, Jira, Datadog...), sourced by ~/.zshrc and not versioned.\n# e.g. export GITHUB_TOKEN=...' > ~/.secretsrc
     chmod 600 ~/.secretsrc
     ok "Created an empty ~/.secretsrc"
 fi
