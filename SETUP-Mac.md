@@ -27,11 +27,6 @@ Choose "French - PC" when I use my own keyboard and "French" when I use the buil
 
 Useful: remove the backtick ` dead key: install Ukelele, copy the "French - PC" keyboard layout, and then remove the dead key.
 
-## Misc
-
-Remap alt-tab through windows to ⌘ + @ instead of ⌘ + `:
-System Settings → Keyboard → Keyboard Shortcuts → Keyboard → Move focus to next window → remap to ⌘ + @.
-
 # AlgoliaSaaS
 
 ```bash
