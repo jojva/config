@@ -49,5 +49,11 @@ eval "$(starship init zsh)"
 # Set AWS profile (see ~/.aws/config)
 export AWS_PROFILE=metis-prod
 
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/joris.valette/.docker/completions $fpath)
+autoload -Uz compinit
+(( ${+_comps[docker]} )) || compinit
+# End of Docker CLI completions
+
 # Initialize zoxide (must stay at the end, after compinit)
 eval "$(zoxide init zsh)"
