@@ -29,3 +29,6 @@ fi
 if (( ${CHANGED_DOMAINS[(Ie)com.apple.dock]} )); then
     run killall Dock
 fi
+if (( ${CHANGED_DOMAINS[(Ie)NSGlobalDomain]} )); then
+    warn "Log out and back in to apply the scrolling and alert sound settings"
+fi
