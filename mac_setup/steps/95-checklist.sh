@@ -50,6 +50,6 @@ todo "~/.secretsrc is filled" \
     "Feel free to fill it with API keys and tokens (GitHub, Jira, Datadog...), it's sourced by .zshrc and not versioned" \
     secrets_filled
 
-info "Can't be checked:"
+info "Also make sure that:"
 info "  - fenêtre, Rectangle and Doll are allowed in System Settings → Privacy & Security → Accessibility"
 info "  - The Dell is the main display: System Settings → Displays → Dell → Use as: Main display"
