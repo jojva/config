@@ -14,6 +14,8 @@ mac_setup/setup.sh --dry-run       # Show what would be done
 ```
 Packages are listed in [mac_setup/Brewfile](mac_setup/Brewfile).
 
+The first step, `prerequisites`, checks what only I can do by hand (sign in to the Apple account, add a Touch ID fingerprint): it opens the right Settings pane and waits until it's done.
+
 What follows is not automated yet.
 
 # System
