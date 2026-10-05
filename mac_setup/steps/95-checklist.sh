@@ -27,6 +27,11 @@ firefox_signed_in() {
     [[ -n $dir && -f $firefox_dir/$dir/signedInUser.json ]]
 }
 
+french_pc_enabled() {
+    defaults read com.apple.HIToolbox AppleEnabledInputSources 2>/dev/null \
+        | grep -q '"KeyboardLayout Name" = "French-PC"'
+}
+
 secrets_filled() {
     grep -qvE '^[[:space:]]*(#|$)' ~/.secretsrc 2>/dev/null
 }
@@ -38,6 +43,9 @@ for profile in algolia perso; do
         "Open Firefox $profile and sign in (passwords are on my phone, in the same profile), then restore the tabs from about:firefoxview" \
         firefox_signed_in $profile
 done
+todo "The French - PC input source is enabled" \
+    "System Settings → Keyboard → Text Input → Edit… → +: French - PC for my own keyboard, French for the Mac's (Ukelele can remove the \` dead key)" \
+    french_pc_enabled
 todo "~/.secretsrc is filled" \
     "Feel free to fill it with API keys and tokens (GitHub, Jira, Datadog...), it's sourced by .zshrc and not versioned" \
     secrets_filled
