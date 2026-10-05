@@ -10,9 +10,6 @@ source ~/.secretsrc
 # Enable command auto-completion
 autoload -Uz compinit && compinit
 
-# Autojump initialization
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
-
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
@@ -52,3 +49,6 @@ eval "$(starship init zsh)"
 
 # Set AWS profile (see ~/.aws/config)
 export AWS_PROFILE=metis-prod
+
+# Initialize zoxide (must stay at the end, after compinit)
+eval "$(zoxide init zsh)"

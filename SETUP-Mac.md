@@ -26,7 +26,7 @@ Useful: remove the backtick ` dead key: install Ukelele, copy the "French - PC" 
 
 ## Apps
 
-Also install doll (https://github.com/xiaogdgenuine/Doll) to see Slack notifs in the menu bar.
+Configure [Doll](https://github.com/xiaogdgenuine/Doll) to show Slack notifs in the menu bar.
 
 ## Startup apps
 
