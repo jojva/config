@@ -48,6 +48,21 @@ ensure_clone() {
     run git clone $url $dir
 }
 
+# ensure_symlink <target> <link>
+# Makes <link> a symlink to <target>. Anything already at <link> is moved aside.
+ensure_symlink() {
+    local target=$1 link=$2
+    if [[ -L $link && $(readlink $link) == $target ]]; then
+        ok "$link → $target"
+        return 0
+    fi
+    [[ -d ${link:h} ]] || run mkdir -p ${link:h}
+    if [[ -e $link || -L $link ]]; then
+        run mv $link $link.backup-$(date +%Y%m%d-%H%M%S)
+    fi
+    run ln -s $target $link
+}
+
 # ensure_default <domain> <key> <bool|int|float|string> <value>
 # Writes a `defaults` value only when it differs from the current one.
 # Appends the domain to CHANGED_DOMAINS when something was written.
