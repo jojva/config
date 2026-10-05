@@ -34,7 +34,3 @@ mkdir .vscode && cp -r tools/environments/*.json .vscode/
 cp tools/lldb/lldbinit.sample ~/.lldbinit
 subl ~/.lldbinit # -> replace with `command script import ~/workspace/AlgoliaSaaS/tools/lldb/formatters.py`
 ```
-
-# Go
-
-See [go_install.sh](go_install.sh).
