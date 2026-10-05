@@ -44,5 +44,5 @@ else
     run make -C $repo install CONFIG=release
     run open $app
     warn "Grant fenêtre the Accessibility permission when asked"
-    warn "(System Settings → Privacy & Security → Accessibility), then add it to the Login Items"
+    warn "(System Settings → Privacy & Security → Accessibility)"
 fi

@@ -30,16 +30,6 @@ Useful: remove the backtick ` dead key: install Ukelele, copy the "French - PC" 
 
 Configure [Doll](https://github.com/xiaogdgenuine/Doll) to show Slack notifs in the menu bar.
 
-## Startup apps
-
-System Settings -> General -> Login Items and Extensions, add the apps:
-- Dropbox
-- Firefox algolia
-- Firefox perso
-- Ghostty
-- Slack
-- Spotify
-
 ## Misc
 
 Remap alt-tab through windows to ⌘ + @ instead of ⌘ + `:
