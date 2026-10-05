@@ -15,6 +15,7 @@ github_auth_ok() {
 if [[ -f $key ]]; then
     ok "$key exists"
 else
+    [[ -d ${key:h} ]] || run mkdir -m 700 ${key:h}
     info "Generating $key, choose a passphrase (or leave it empty)"
     run ssh-keygen -t ed25519 -C $email -f $key
 fi
