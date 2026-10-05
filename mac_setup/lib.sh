@@ -37,15 +37,16 @@ run() {
 }
 
 # ensure_clone <url> <dir>
-# Clones a repo, unless it's already there (an existing clone is not updated).
+# Clones a repo with its submodules, unless it's already there (an existing clone
+# is not updated).
 ensure_clone() {
     local url=$1 dir=$2
     if [[ -d $dir/.git ]]; then
         ok "$dir already cloned"
         return 0
     fi
-    run mkdir -p ${dir:h}
-    run git clone $url $dir
+    [[ -d ${dir:h} ]] || run mkdir -p ${dir:h}
+    run git clone --recurse-submodules $url $dir
 }
 
 # ensure_symlink <target> <link>

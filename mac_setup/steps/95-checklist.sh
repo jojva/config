@@ -52,4 +52,5 @@ todo "~/.secretsrc is filled" \
 
 info "Also make sure that:"
 info "  - fenêtre, Rectangle and Doll are allowed in System Settings → Privacy & Security → Accessibility"
+info "  - AlgoliaSaaS is set up, see its README (~/workspace/AlgoliaSaaS)"
 info "  - The Dell is the main display: System Settings → Displays → Dell → Use as: Main display"
