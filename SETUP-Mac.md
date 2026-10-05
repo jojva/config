@@ -34,8 +34,8 @@ Configure [Doll](https://github.com/xiaogdgenuine/Doll) to show Slack notifs in 
 
 System Settings -> General -> Login Items and Extensions, add the apps:
 - Dropbox
-- Firefox (Pro)
-- Firefox (Perso)
+- Firefox algolia
+- Firefox perso
 - Ghostty
 - Slack
 - Spotify
@@ -55,11 +55,9 @@ subl ~/.lldbinit # -> replace with `command script import ~/workspace/AlgoliaSaa
 
 # Firefox
 
-For the pro and perso profiles, I used the Automator.
-
-Automator -> New Document -> Application -> "Run Shell Script" ->
-- Pro -> `/Applications/Firefox.app/Contents/MacOS/firefox -P "pro" --no-remote`
-- Perso -> `/Applications/Firefox.app/Contents/MacOS/firefox -P "perso" --no-remote`
+The `algolia` and `perso` profiles and their launcher apps are created by the `firefox-profiles` step.
+Then sign in to each profile: the passwords are stored in Firefox, get them from my phone, in the matching profile.
+To restore my tabs, open about:firefoxview, which lists the tabs open on my other devices.
 
 # Go
 
