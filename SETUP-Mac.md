@@ -26,10 +26,6 @@ Choose "French - PC" when I use my own keyboard and "French" when I use the buil
 
 Useful: remove the backtick ` dead key: install Ukelele, copy the "French - PC" keyboard layout, and then remove the dead key.
 
-## Apps
-
-Configure [Doll](https://github.com/xiaogdgenuine/Doll) to show Slack notifs in the menu bar.
-
 ## Misc
 
 Remap alt-tab through windows to ⌘ + @ instead of ⌘ + `:
