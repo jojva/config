@@ -25,10 +25,18 @@ else
     sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf /tmp/"${goversion}".linux-amd64.tar.gz
 fi
 
+# New shells get it from /etc/paths.d/go (macOS) or the shell rc, but not this one
+export PATH="/usr/local/go/bin:$PATH"
 go version
 
-# For `golangci-lint` specifically I'm using this: https://golangci-lint.run/usage/install/#linux-and-windows
-echo "Updating golangci-lint"
-curl --silent --show-error --location https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)"/bin latest
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # On macOS, golangci-lint comes from Homebrew (see mac_setup/Brewfile): the install
+    # script below fails its checksum check since releases ship .sbom.json files.
+    echo "golangci-lint is installed by Homebrew, update it with: brew upgrade golangci-lint"
+else
+    # For `golangci-lint` specifically I'm using this: https://golangci-lint.run/usage/install/#linux-and-windows
+    echo "Updating golangci-lint"
+    curl --silent --show-error --location https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)"/bin latest
+fi
 
 echo "Done."
