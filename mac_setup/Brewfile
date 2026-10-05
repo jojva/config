@@ -1,0 +1,25 @@
+# CLI tools
+brew "git"
+brew "git-lfs"
+brew "gh"
+brew "fzf"
+brew "autojump"
+brew "starship"
+brew "ripgrep"
+brew "watch"
+brew "kubectl"
+brew "k9s"
+brew "libpq"
+
+# Apps
+cask "claude-code"
+cask "firefox"
+cask "ghostty"
+cask "obsidian"
+cask "dropbox"
+cask "spotify"
+cask "visual-studio-code"
+cask "p4v"
+cask "gcloud-cli"
+
+# Slack, Chrome, 1Password and Zoom are already installed outside Homebrew by Self Service.

@@ -1,3 +1,21 @@
+# Automated setup
+
+On a fresh Mac:
+```
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/jojva/config/master/mac_setup/bootstrap.sh)"
+```
+Then, from this repo (every step is idempotent, re-running is safe):
+```
+mac_setup/setup.sh                 # Run all steps
+mac_setup/setup.sh <step>...       # Run only some steps
+mac_setup/setup.sh --from <step>   # Resume after a failure
+mac_setup/setup.sh --list          # List the steps
+mac_setup/setup.sh --dry-run       # Show what would be done
+```
+Packages are listed in [mac_setup/Brewfile](mac_setup/Brewfile).
+
+What follows is not automated yet.
+
 # System
 
 ## Keyboard layout
@@ -6,19 +24,7 @@ Choose "French - PC" when I use my own keyboard and "French" when I use the buil
 
 Useful: remove the backtick ` dead key: install Ukelele, copy the "French - PC" keyboard layout, and then remove the dead key.
 
-## Useful packages
-
-```
-brew install --cask
-  alt-tab \
-  dropbox \
-  firefox \
-  ghostty \
-  slack \
-  spotify
-```
-
-Configure alt-tab (the app) to use ⌘ and not ⌥.
+## Apps
 
 Also install doll (https://github.com/xiaogdgenuine/Doll) to see Slack notifs in the menu bar.
 
@@ -33,11 +39,6 @@ System Settings -> General -> Login Items and Extensions, add the apps:
 - Spotify
 
 ## Misc
-
-```
-# Disable annoying login message
-touch ~/.hushlogin
-```
 
 Remap alt-tab through windows to ⌘ + @ instead of ⌘ + `:
 System Settings → Keyboard → Keyboard Shortcuts → Keyboard → Move focus to next window → remap to ⌘ + @.

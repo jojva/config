@@ -53,7 +53,6 @@ algoliasaas_build() {
 
 alias ls='ls -GhF --color=auto'
 alias ll='ls -al'
-alias lx='exa --long --all -@ --time-style long-iso --color-scale'
 alias code='GTK_IM_MODULE="xim" code'
 alias c='code .'
 alias g='git'
