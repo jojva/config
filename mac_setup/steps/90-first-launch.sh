@@ -6,6 +6,7 @@ source ${0:A:h}/../lib.sh
 
 # <app name>|<what to do when it opens>
 first_launches=(
+    "Docker|Accept the terms, then enter your password to install its helper"
     "Doll|Grant the Accessibility permission, then add Slack to show its badge"
     "Dropbox|Sign in"
     "Firefox|Confirm opening it"

@@ -14,6 +14,7 @@ brew "zoxide"
 
 # Apps
 cask "claude-code"
+cask "docker-desktop"
 cask "doll"
 cask "dropbox"
 cask "firefox"
@@ -23,6 +24,7 @@ cask "obsidian"
 cask "p4v"
 cask "rectangle"
 cask "spotify"
+cask "sublime-text"
 cask "visual-studio-code"
 
 # Slack, Zoom, Chrome and 1Password are already installed outside Homebrew by Self Service.
