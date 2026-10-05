@@ -37,7 +37,6 @@ export LD="/opt/homebrew/opt/lld@21/bin/lld"
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # Path stuff
-export PATH="/opt/homebrew/bin:$PATH"                           # Homebrew binaries
 export PATH="$HOME/bin:$PATH"                                   # User binaries
 export PATH="$HOME/go/bin:$PATH"                                # Go binaries
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"                 # PostgreSQL binaries for Metis

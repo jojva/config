@@ -5,6 +5,7 @@ source ${0:A:h}/../lib.sh
 
 ensure_symlink $REPO_DIR/common_dotfiles/.bash_aliases ~/.bash_aliases
 ensure_symlink $REPO_DIR/common_dotfiles/.gitconfig ~/.gitconfig
+ensure_symlink $REPO_DIR/mac_dotfiles/.zprofile ~/.zprofile
 ensure_symlink $REPO_DIR/mac_dotfiles/.zshrc ~/.zshrc
 ensure_symlink $REPO_DIR/mac_dotfiles/.ssh/config ~/.ssh/config
 
