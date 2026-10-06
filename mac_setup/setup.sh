@@ -7,6 +7,9 @@
 #   ./setup.sh --from <step>   Run from <step> to the end (e.g. to resume after a failure)
 #   ./setup.sh --list          List the steps
 #   ./setup.sh --dry-run ...   Show what would be done, change nothing
+#
+# After a step that changed something or asked me something, it waits for my
+# confirmation before going on with the next one.
 
 script=${0:A}
 source ${script:h}/lib.sh
@@ -62,13 +65,37 @@ if is_dry_run; then
     log "Dry run: nothing will be changed"
 fi
 
+# Steps record their changes in this file (see mark_changed): after a step that
+# changed something or asked me something, wait for my confirmation.
+export SETUP_CHANGES_FILE=$(mktemp -t mac_setup)
+trap 'rm -f $SETUP_CHANGES_FILE' EXIT
+
+todo=()
 for i in {1..$#steps}; do
-    name=${names[i]}
-    (( ${selected[(Ie)$name]} )) || continue
+    if (( ${selected[(Ie)${names[i]}]} )); then
+        todo+=($i)
+    fi
+done
+
+for (( n = 1; n <= $#todo; n++ )); do
+    i=$todo[n]
+    name=$names[i]
     log "[$name]"
-    if ! zsh ${steps[i]}; then
+    : > $SETUP_CHANGES_FILE
+    if ! zsh $steps[i]; then
         err "Step '$name' failed. Fix the issue, then resume with: $script --from $name"
         exit 1
+    fi
+    if (( n < $#todo )) && [[ -s $SETUP_CHANGES_FILE ]]; then
+        next=$names[$todo[n+1]]
+        if ! read -r "answer?    '$name' changed things: press Enter to go on with '$next', or q to stop: " </dev/tty; then
+            err "No terminal to confirm, stopping. Resume with: $script --from $next"
+            exit 1
+        fi
+        if [[ $answer == q ]]; then
+            log "Stopped. Resume with: $script --from $next"
+            exit 0
+        fi
     fi
 done
 

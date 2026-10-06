@@ -27,7 +27,7 @@ fi
 info "Copy the [profile ${(j:] and [profile :)missing}] sections from the AWS User Guide"
 info "that opens (CLI → Configuration) into ~/.aws/config"
 open_work_url $guide_url
-read -r "?    Press Enter once ~/.aws/config is saved: " </dev/tty
+ask -r "?    Press Enter once ~/.aws/config is saved: "
 
 missing=( $(missing_profiles) )
 if (( $#missing )); then

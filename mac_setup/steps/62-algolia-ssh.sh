@@ -19,7 +19,7 @@ elif is_dry_run; then
     info "[dry-run] would ask to copy $key from the previous Mac, or generate a new one"
 else
     warn "No $key: copy it (and $key:t.pub) from the previous Mac now, its public key is already in LDAP"
-    read -r "?    Press Enter once copied, or to generate a new key: " </dev/tty
+    ask -r "?    Press Enter once copied, or to generate a new key: "
     if [[ -f $key ]]; then
         ok "$key copied"
     else
@@ -63,7 +63,7 @@ else
         info "Whether you regenerate it or create a new one, export it as HOMEBREW_GITHUB_API_TOKEN"
         info "in ~/.secretsrc, then paste it below too."
         open_work_url $token_url
-        read -rs "token?    Please also paste the token here: " </dev/tty
+        ask -rs "token?    Please also paste the token here: "
         print
         export HOMEBREW_GITHUB_API_TOKEN=$token
         unset token

@@ -38,7 +38,7 @@ for entry in $first_launches; do
     fi
     run open $app
     info "$name: $todo"
-    read -r "?    Press Enter once done: " </dev/tty
+    ask -r "?    Press Enter once done: "
     if launched_once $app; then
         ok "$name launched once"
     else

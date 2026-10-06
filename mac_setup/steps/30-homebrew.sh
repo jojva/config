@@ -13,6 +13,7 @@ if is_dry_run; then
 fi
 
 # The installer needs sudo, ask for the password upfront so it can run non-interactively.
+mark_changed
 sudo -v
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ok "Homebrew installed"

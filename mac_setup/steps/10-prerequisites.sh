@@ -25,9 +25,9 @@ require() {
         return 0
     fi
     warn "To do: $desc"
-    open $pane
+    run open $pane
     until $check; do
-        read -r "answer?    Press Enter once done (or type 'skip'): " </dev/tty
+        ask -r "answer?    Press Enter once done (or type 'skip'): "
         if [[ $answer == skip ]]; then
             warn "Skipped: $desc"
             return 0

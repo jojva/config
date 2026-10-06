@@ -36,7 +36,7 @@ import_profile() {
 
     info "Download the VPN profile (.ovpn) from Google Drive, in the Firefox algolia window that opens"
     open_work_url $profile_url
-    read -r "?    Press Enter once it's in ~/Downloads: " </dev/tty
+    ask -r "?    Press Enter once it's in ~/Downloads: "
 
     local profiles=( ~/Downloads/*.ovpn(N.om) )
     if (( ! $#profiles )); then

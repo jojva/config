@@ -26,12 +26,28 @@ err()  { print -r -- $'\e[1;31mError:\e[0m '"$*" >&2 }
 
 is_dry_run() { (( DRY_RUN )) }
 
+# Steps record that they changed something, or asked me something, in this file:
+# setup.sh then asks for confirmation before going on with the next step.
+mark_changed() {
+    if [[ -n ${SETUP_CHANGES_FILE:-} ]]; then
+        print >> $SETUP_CHANGES_FILE
+    fi
+}
+
+# ask <read options and arguments...>
+# Reads my answer from the terminal (see read's options), and counts as a change.
+ask() {
+    mark_changed
+    read "$@" </dev/tty
+}
+
 # Print a command, then run it (or only print it in dry-run mode).
 run() {
     if is_dry_run; then
         print -r -- "    [dry-run] ${(q-)@}"
     else
         print -r -- $'    \e[2m$ '"${(q-)@}"$'\e[0m'
+        mark_changed
         "$@"
     fi
 }

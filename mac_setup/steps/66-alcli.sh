@@ -27,7 +27,7 @@ else
     info "Whether you regenerate it or create a new one, export it as GITHUB_PAT in ~/.secretsrc,"
     info "then paste it below too."
     open_work_url $token_url
-    read -rs "token?    Please also paste the token here: " </dev/tty
+    ask -rs "token?    Please also paste the token here: "
     print
     export GITHUB_PAT=$token
     unset token
