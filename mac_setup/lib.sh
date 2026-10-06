@@ -102,8 +102,9 @@ ensure_symlink() {
 
 # ensure_default <domain> <key> <bool|int|float|string> <value>
 # Writes a `defaults` value only when it differs from the current one.
-# Appends the domain to CHANGED_DOMAINS when something was written.
-typeset -ga CHANGED_DOMAINS
+# Appends the domain to CHANGED_DOMAINS, and "<domain> <key>" to CHANGED_KEYS, when
+# something was written.
+typeset -ga CHANGED_DOMAINS CHANGED_KEYS
 ensure_default() {
     local domain=$1 key=$2 type=$3 value=$4 expected current
     case $type in
@@ -117,4 +118,5 @@ ensure_default() {
     fi
     run defaults write "$domain" "$key" "-$type" "$value"
     CHANGED_DOMAINS+=($domain)
+    CHANGED_KEYS+=("$domain $key")
 }

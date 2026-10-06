@@ -6,7 +6,6 @@
 	editor = code --wait
 	autocrlf = false
 	filemode = false
-	excludesfile = ~/.gitignore
 
 [log]
     decorate = auto
@@ -65,7 +64,6 @@
 	ci = commit --reedit-message=@ --reset-author
 	tmp = "!f() { git commit --no-verify -am \"TMP: $1\"; }; f"
 	commend = commit --amend --no-edit
-	fmt = !sh -c 'git diff -U0 --no-prefix --no-color $(git merge-base origin/master HEAD)..HEAD -- '*.cpp' '*.h' | clang-format-diff-14 -style file -i'
 	# Diff
 	df = diff
 	dfc = diff --cached
