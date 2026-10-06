@@ -24,7 +24,7 @@ else
 fi
 
 # Screenshots go to their own folder instead of the Desktop
-screenshots=~/Pictures/Screenshots
+screenshots=~/Screenshots
 [[ -d $screenshots ]] || run mkdir -p $screenshots
 ensure_default com.apple.screencapture location string $screenshots
 
