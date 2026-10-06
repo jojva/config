@@ -9,6 +9,7 @@ apps=(
     "/Applications/Firefox algolia.app"
     "/Applications/Firefox perso.app"
     /Applications/Ghostty.app
+    /Applications/Obsidian.app
     /Applications/Rectangle.app
     /Applications/Slack.app
     /Applications/Spotify.app
