@@ -1,0 +1,5 @@
+# Ghostty config, symlinked by mac_setup's dotfiles step.
+
+# Left Option acts as Alt (e.g. Option+P in Claude Code to switch the model and
+# effort), right Option still types the French layout's special characters.
+macos-option-as-alt = left
