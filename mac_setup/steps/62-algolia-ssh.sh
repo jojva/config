@@ -45,6 +45,7 @@ fi
 # ssh-signer-client, from a private tap: the formula downloads a private release,
 # which needs a GitHub token. It's exported as HOMEBREW_GITHUB_API_TOKEN in
 # ~/.secretsrc, so that brew upgrade can update it too.
+ensure_brew_trust algolia/private/ssh-signer-client
 if brew list ssh-signer-client >/dev/null 2>&1; then
     ok "ssh-signer-client installed"
 elif is_dry_run; then

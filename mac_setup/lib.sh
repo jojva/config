@@ -43,6 +43,19 @@ open_work_url() {
     run open -na Firefox --args -P algolia $1
 }
 
+# ensure_brew_trust <tap formula>
+# Homebrew only loads formulae from third-party taps once they're trusted. Trust
+# the formula itself rather than its whole tap.
+ensure_brew_trust() {
+    local trusted
+    trusted=$(brew trust --json=v1 2>/dev/null) || trusted=""
+    if [[ $trusted == *"\"$1\""* ]]; then
+        ok "Homebrew trusts $1"
+        return 0
+    fi
+    run brew trust --formula $1
+}
+
 # ensure_clone <url> <dir>
 # Clones a repo with its submodules, unless it's already there (an existing clone
 # is not updated).

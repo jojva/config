@@ -1,3 +1,6 @@
+# Taps
+tap "hashicorp/tap"
+
 # CLI tools
 brew "bat"
 brew "fzf"
@@ -6,6 +9,7 @@ brew "git"
 brew "git-lfs"
 brew "go"
 brew "golangci-lint"
+brew "hashicorp/tap/vault"
 brew "herdr"
 brew "k9s"
 brew "kubectl"
