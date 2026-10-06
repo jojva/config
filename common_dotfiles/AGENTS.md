@@ -7,6 +7,8 @@ User-wide rules, versioned in https://github.com/jojva/config and linked as both
 
 - Unless I explicitly ask you to work in the main repository, do all work in a git
   worktree, in `~/tmp/worktrees/<repo>/<worktree>`.
+- Exception: in my config repo (`~/workspace/config`, github.com/jojva/config), always
+  work directly in the main repository.
 - The worktree is named after the last part of its branch. Branches are named
   `joris/<type>/<name>`, where `<name>` starts with the SRCH ticket number or the PR
   number when there is one: branch `joris/feat/srch-4242-fix-that-bug` goes in
