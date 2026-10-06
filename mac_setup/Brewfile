@@ -7,6 +7,7 @@ brew "awscli"
 brew "azure-cli"
 brew "azure/kubelogin/kubelogin"  # Azure's, for AKS (not int128's kubelogin from homebrew-core)
 brew "bat"
+brew "cmake"
 brew "fzf"
 brew "gh"
 brew "git"
