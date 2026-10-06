@@ -27,16 +27,19 @@ firefox_signed_in() {
     [[ -n $dir && -f $firefox_dir/$dir/signedInUser.json ]]
 }
 
-# Enabled sources are sometimes recorded late in AppleEnabledInputSources, but a
-# selected source is necessarily enabled
+# Asks macOS for the enabled input sources: its preferences (com.apple.HIToolbox)
+# don't reliably list custom layouts
 layout_enabled() {
-    local key
-    for key in AppleEnabledInputSources AppleSelectedInputSources; do
-        if defaults read com.apple.HIToolbox $key 2>/dev/null | grep -qE "\"KeyboardLayout Name\" = \"?$1\"?;"; then
-            return 0
-        fi
-    done
-    return 1
+    local names
+    names=$(osascript -l JavaScript -e '
+        ObjC.import("Carbon");
+        var sources = ObjC.castRefToObject($.TISCreateInputSourceList(null, false)), names = [];
+        for (var i = 0; i < sources.count; i++) {
+            names.push(ObjC.castRefToObject($.TISGetInputSourceProperty(
+                sources.objectAtIndex(i), $.kTISPropertyLocalizedName)).js);
+        }
+        names.join("\n");' 2>/dev/null) || return 1
+    (( ${${(f)names}[(Ie)$1]} ))
 }
 
 azure_on_metis() {
