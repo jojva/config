@@ -7,6 +7,7 @@ repos=(
     AlgoliaWeb
     alcli
     dictionaries
+    engineering-duty
     metis
 )
 
