@@ -27,9 +27,16 @@ firefox_signed_in() {
     [[ -n $dir && -f $firefox_dir/$dir/signedInUser.json ]]
 }
 
-french_pc_enabled() {
-    defaults read com.apple.HIToolbox AppleEnabledInputSources 2>/dev/null \
-        | grep -q '"KeyboardLayout Name" = "French-PC"'
+# Enabled sources are sometimes recorded late in AppleEnabledInputSources, but a
+# selected source is necessarily enabled
+layout_enabled() {
+    local key
+    for key in AppleEnabledInputSources AppleSelectedInputSources; do
+        if defaults read com.apple.HIToolbox $key 2>/dev/null | grep -qE "\"KeyboardLayout Name\" = \"?$1\"?;"; then
+            return 0
+        fi
+    done
+    return 1
 }
 
 azure_on_metis() {
@@ -54,9 +61,9 @@ for profile in algolia perso; do
         "Open Firefox $profile and sign in (passwords are on my phone, in the same profile), then restore the tabs from about:firefoxview" \
         firefox_signed_in $profile
 done
-todo "The French - PC input source is enabled" \
-    "System Settings → Keyboard → Text Input → Edit… → +: French - PC for my own keyboard, French for the Mac's (Ukelele can remove the \` dead key)" \
-    french_pc_enabled
+todo "The Skillkorp input source is enabled" \
+    "Create it with Ukelele and add it as an input source, see Keyboard layout in SETUP-Mac.md" \
+    layout_enabled Skillkorp
 todo "Azure CLI uses the Metis subscription" \
     "Run az login --tenant ${$(azure_tenant):-<Production tenant ID>} and choose Metis (a plain az login fails on the Production tenant's MFA)" \
     azure_on_metis

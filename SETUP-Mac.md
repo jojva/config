@@ -25,7 +25,17 @@ What follows is not automated yet.
 
 Choose "French - PC" when I use my own keyboard and "French" when I use the built-in keyboard.
 
-Useful: remove the backtick ` dead key: install Ukelele, copy the "French - PC" keyboard layout, and then remove the dead key.
+Useful: remove the backtick ` dead key.
+Install Ukelele.
+Make sure current keyboard layout is French - PC
+File → New From Current Input Source
+Close the Untitled keyboard layout
+Right click on the new keyboard layour -> Set keyboard name and script -> give it a name (e.g. Skillkorp)
+Double click keyboard layout to open
+Press right Option -> right-click on ` -> Make output
+Close the layout
+On the "keyboard layout list" UI, do File -> Install
+Open Settings -> Keyboard -> Input Sources -> + -> Others -> Skillkorp
 
 # AlgoliaSaaS
 
