@@ -49,6 +49,9 @@ eval "$(starship init zsh)"
 # Set AWS profile (see ~/.aws/config)
 export AWS_PROFILE=metis-prod
 
+# Go: fetch Algolia's private modules directly from GitHub (over SSH, see .gitconfig)
+export GOPRIVATE="github.com/algolia/*"
+
 # Core Vault, see https://algolia.atlassian.net/wiki/spaces/FOUNDATION/pages/5410684960
 export VAULT_ADDR=https://vault.algolia.net
 
