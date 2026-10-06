@@ -32,6 +32,17 @@ french_pc_enabled() {
         | grep -q '"KeyboardLayout Name" = "French-PC"'
 }
 
+azure_on_metis() {
+    [[ $(az account show --query name -o tsv 2>/dev/null) == Metis ]]
+}
+
+# The Production tenant's ID, read from alcli (cloned by the repos step) rather than
+# versioned in this public repo
+azure_tenant() {
+    grep -oE 'AlgoliaAzureTenantID = "[^"]+"' ~/workspace/alcli/internal/config/providers.go 2>/dev/null \
+        | cut -d'"' -f2
+}
+
 secrets_filled() {
     grep -qvE '^[[:space:]]*(#|$)' ~/.secretsrc 2>/dev/null
 }
@@ -46,6 +57,9 @@ done
 todo "The French - PC input source is enabled" \
     "System Settings → Keyboard → Text Input → Edit… → +: French - PC for my own keyboard, French for the Mac's (Ukelele can remove the \` dead key)" \
     french_pc_enabled
+todo "Azure CLI uses the Metis subscription" \
+    "Run az login --tenant ${$(azure_tenant):-<Production tenant ID>} and choose Metis (a plain az login fails on the Production tenant's MFA)" \
+    azure_on_metis
 todo "~/.secretsrc is filled" \
     "Feel free to fill it with API keys and tokens (GitHub, Jira, Datadog...), it's sourced by .zshrc and not versioned" \
     secrets_filled
