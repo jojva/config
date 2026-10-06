@@ -1,7 +1,11 @@
 # Taps
+tap "azure/kubelogin"
 tap "hashicorp/tap"
 
 # CLI tools
+brew "awscli"
+brew "azure-cli"
+brew "azure/kubelogin/kubelogin"  # Azure's, for AKS (not int128's kubelogin from homebrew-core)
 brew "bat"
 brew "fzf"
 brew "gh"
