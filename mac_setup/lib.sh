@@ -36,6 +36,13 @@ run() {
     fi
 }
 
+# open_work_url <url>
+# Opens a URL in the Firefox algolia profile, where I'm signed in to work accounts
+# (the default browser is the perso profile).
+open_work_url() {
+    run open -na Firefox --args -P algolia $1
+}
+
 # ensure_clone <url> <dir>
 # Clones a repo with its submodules, unless it's already there (an existing clone
 # is not updated).

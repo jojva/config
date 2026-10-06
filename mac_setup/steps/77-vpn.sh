@@ -35,7 +35,7 @@ import_profile() {
     run "$openvpn" --skip-startup-dialogs
 
     info "Download the VPN profile (.ovpn) from Google Drive, in the Firefox algolia window that opens"
-    run open -na Firefox --args -P algolia $profile_url
+    open_work_url $profile_url
     read -r "?    Press Enter once it's in ~/Downloads: " </dev/tty
 
     local profiles=( ~/Downloads/*.ovpn(N.om) )
