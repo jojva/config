@@ -4,6 +4,8 @@ source ${0:A:h}/../lib.sh
 
 repos=(
     AlgoliaSaaS
+    AlgoliaWeb
+    dictionaries
     metis
 )
 
