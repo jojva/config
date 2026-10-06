@@ -55,6 +55,9 @@ export GOPRIVATE="github.com/algolia/*"
 # Core Vault, see https://algolia.atlassian.net/wiki/spaces/FOUNDATION/pages/5410684960
 export VAULT_ADDR=https://vault.algolia.net
 
+# Anthropic default model at startup
+export ANTHROPIC_MODEL="claude-opus-5-5"
+
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/joris.valette/.docker/completions $fpath)
 autoload -Uz compinit
