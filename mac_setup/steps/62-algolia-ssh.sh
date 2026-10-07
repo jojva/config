@@ -1,50 +1,44 @@
-# SSH access to Algolia servers: the LDAP key and ssh-signer-client, which
-# mac_dotfiles/.ssh/config calls. See
+# SSH access to Algolia servers: the LDAP key, kept in 1Password and served by its
+# SSH agent (only its public key is on disk, for .ssh/config), and
+# ssh-signer-client, which .ssh/config calls. See
 # https://algolia.atlassian.net/wiki/spaces/FOUNDATION/pages/2790785036 and
 # https://github.com/algolia/ssh-key-signer/blob/master/README.md
 # After dotfiles: tapping the private repo relies on .gitconfig's HTTPS → SSH rewrite.
 
 source ${0:A:h}/../lib.sh
 
-key=~/.ssh/algolia
-email=$(git config -f $REPO_DIR/common_dotfiles/.gitconfig user.email)
+key_item="Prod LDAP SSH"
+public_key=~/.ssh/algolia.pub
 ldap_request_url="https://algolia.atlassian.net/servicedesk/customer/portal/159/group/553/create/1364"
 token_url="https://github.com/settings/personal-access-tokens/15653576"
 new_token_url="https://github.com/settings/personal-access-tokens/new"
 
 # LDAP key: the signer signs the public key registered in LDAP
-if [[ -f $key ]]; then
-    ok "$key exists"
+if write_public_key $key_item $public_key; then
+    :
 elif is_dry_run; then
-    info "[dry-run] would ask to copy $key from the previous Mac, or generate a new one"
+    info "[dry-run] would ask for the \"$key_item\" SSH key in 1Password"
 else
-    warn "No $key: copy it (and $key:t.pub) from the previous Mac now, its public key is already in LDAP"
-    ask -r "?    Press Enter once copied, or to generate a new key: "
-    if [[ -f $key ]]; then
-        ok "$key copied"
-    else
-        info "Generating $key, choose a passphrase"
-        run ssh-keygen -t ed25519 -C $email -f $key
-        run pbcopy < $key.pub
-        info "Its public key is in the clipboard: paste it in the LDAP request that opens, to add"
-        info "it to the jvalette LDAP account (the request also asks for an approver and the"
-        info "phone number with Duo Mobile). SSH to servers works once the key is in LDAP."
-        open_work_url $ldap_request_url
+    warn "No \"$key_item\" SSH key in 1Password's $ONEPASSWORD_VAULT vault. In 1Password: New Item → SSH Key"
+    info "  → Add Private Key, then either Import a Key File with the previous Mac's key (its"
+    info "  public key is already in LDAP), or Generate a New Key (Ed25519). Title it \"$key_item\"."
+    until write_public_key $key_item $public_key; do
+        ask -r "answer?    Press Enter once it's in 1Password (or type 'skip'): "
+        if [[ $answer == skip ]]; then
+            warn "Skipped: SSH to Algolia servers won't work until the key exists"
+            break
+        fi
+    done
+    if [[ -f $public_key ]]; then
+        ask -r "answer?    Is it a new key, not registered in LDAP yet? [y/N] "
+        if [[ $answer == [yY]* ]]; then
+            run pbcopy < $public_key
+            info "Its public key is in the clipboard: paste it in the LDAP request that opens, to add"
+            info "it to the jvalette LDAP account (the request also asks for an approver and the"
+            info "phone number with Duo Mobile). SSH to servers works once the key is in LDAP."
+            open_work_url $ldap_request_url
+        fi
     fi
-fi
-
-# Keep the passphrase in the keychain. The macOS agent forgets its keys at each
-# logout: --apple-load-keychain reloads, silently, those whose passphrase is in the
-# keychain (UseKeychain in .ssh/config does the same when connecting).
-in_agent() {
-    ssh-add -l 2>/dev/null | grep -qF "$(ssh-keygen -lf $key.pub 2>/dev/null | cut -d' ' -f2)"
-}
-if ssh-keygen -y -P "" -f $key >/dev/null 2>&1; then
-    ok "$key has no passphrase"
-elif in_agent || { ssh-add --apple-load-keychain -q >/dev/null 2>&1; in_agent }; then
-    ok "$key's passphrase is in the keychain"
-elif [[ -f $key ]]; then
-    run ssh-add --apple-use-keychain $key
 fi
 
 # ssh-signer-client, from a private tap: the formula downloads a private release,

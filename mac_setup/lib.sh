@@ -12,8 +12,9 @@ DRY_RUN=${DRY_RUN:-0}
 WORKSPACE_DIR=$HOME/workspace
 DEV_DIR=$HOME/dev
 
-# 1Password's SSH agent, which holds the GitHub key
+# 1Password's SSH agent, which holds the SSH keys, and the vault where they are
 ONEPASSWORD_AGENT_SOCKET=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+ONEPASSWORD_VAULT=Employee
 
 # Make Homebrew available in every step, even right after its installation.
 if [[ -x /opt/homebrew/bin/brew ]]; then
@@ -110,6 +111,29 @@ require_secret() {
     done
     export $var=$value
     ok "$var read from 1Password"
+}
+
+# write_public_key <1Password SSH Key item> <file>
+# Writes the item's public key (not a secret) to <file>, for .ssh/config's
+# IdentityFile, if it's missing or different. Fails if the item doesn't exist.
+write_public_key() {
+    local item=$1 file=$2 pub
+    pub=$(op item get "$item" --vault $ONEPASSWORD_VAULT --fields "label=public key" 2>/dev/null) || return 1
+    [[ -n $pub ]] || return 1
+    # The file may have a comment after the key
+    if [[ -f $file && $(awk '{print $1, $2}' $file) == $pub ]]; then
+        ok "$file is 1Password's \"$item\" public key"
+        return 0
+    fi
+    if is_dry_run; then
+        info "[dry-run] would write $file from 1Password's \"$item\""
+        return 0
+    fi
+    [[ -d ${file:h} ]] || run mkdir -m 700 ${file:h}
+    mark_changed
+    print -r -- $pub > $file
+    chmod 644 $file
+    ok "Wrote $file from 1Password's \"$item\""
 }
 
 # ensure_brew_trust <tap formula>
