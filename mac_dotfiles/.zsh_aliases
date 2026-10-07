@@ -1,4 +1,4 @@
-# Shell aliases, sourced by ~/.zshrc (macOS; Linux uses common_dotfiles/.bash_aliases)
+# Shell aliases, sourced by ~/.zshrc
 
 alias ls='ls -GhF --color=auto'
 alias ll='ls -al'
