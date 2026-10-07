@@ -87,6 +87,31 @@ require() {
     ok $desc
 }
 
+# require_secret <variable> <1Password reference> <how to create it...>
+# Reads a secret from 1Password into <variable>, exported to the current step only.
+# If it's missing, says how to create it, then waits until it's in 1Password.
+require_secret() {
+    local var=$1 ref=$2 value answer line
+    shift 2
+    if is_dry_run; then
+        info "[dry-run] would read $var from $ref"
+        return 0
+    fi
+    until value=$(op read "$ref" 2>/dev/null); do
+        warn "Missing in 1Password: $ref"
+        for line in "$@"; do
+            info "  $line"
+        done
+        ask -r "answer?    Press Enter once it's in 1Password (or type 'skip'): "
+        if [[ $answer == skip ]]; then
+            warn "Skipped: $var isn't set"
+            return 0
+        fi
+    done
+    export $var=$value
+    ok "$var read from 1Password"
+}
+
 # ensure_brew_trust <tap formula>
 # Homebrew only loads formulae from third-party taps once they're trusted. Trust
 # the formula itself rather than its whole tap.

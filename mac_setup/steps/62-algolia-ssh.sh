@@ -48,31 +48,21 @@ elif [[ -f $key ]]; then
 fi
 
 # ssh-signer-client, from a private tap: the formula downloads a private release,
-# which needs a GitHub token. It's exported as HOMEBREW_GITHUB_API_TOKEN in
-# ~/.secretsrc, so that brew upgrade can update it too.
+# which needs a GitHub token, kept in 1Password (.zshrc's brew function reads it too,
+# so that brew upgrade can update it).
 ensure_brew_trust algolia/private/ssh-signer-client
 if brew list ssh-signer-client >/dev/null 2>&1; then
     ok "ssh-signer-client installed"
 elif is_dry_run; then
-    info "[dry-run] would install algolia/private/ssh-signer-client with a GitHub token"
+    info "[dry-run] would install algolia/private/ssh-signer-client with its GitHub token"
 else
-    if [[ -z ${HOMEBREW_GITHUB_API_TOKEN:-} ]]; then
-        info "A GitHub token is needed to install and update ssh-signer-client with Homebrew."
-        info "Regenerate the existing token in the page that opens: $token_url"
-        info "If that page doesn't exist anymore, create a new one at $new_token_url with:"
-        info "  Token name: ssh-key-signer"
-        info "  Resource owner: algolia"
-        info "  Expiration: 365 days"
-        info "  Repository access: Only select repositories, ssh-key-signer and homebrew-private"
-        info "  Repository permissions: Contents read-only"
-        info "Whether you regenerate it or create a new one, export it as HOMEBREW_GITHUB_API_TOKEN"
-        info "in ~/.secretsrc, then paste it below too."
-        open_work_url $token_url
-        ask -rs "token?    Please also paste the token here: "
-        print
-        export HOMEBREW_GITHUB_API_TOKEN=$token
-        unset token
-    fi
+    require_secret HOMEBREW_GITHUB_API_TOKEN "op://Employee/GitHub token - ssh-key-signer/credential" \
+        "A GitHub token lets Homebrew install and update ssh-signer-client." \
+        "Regenerate it at $token_url, or if that page doesn't exist anymore, create one at" \
+        "$new_token_url with: Token name ssh-key-signer, Resource owner algolia," \
+        "Expiration 365 days, Only select repositories ssh-key-signer and homebrew-private," \
+        "Repository permissions Contents read-only." \
+        "Save it in 1Password: API Credential \"GitHub token - ssh-key-signer\" in the Employee vault."
     run brew tap algolia/private
     run brew install algolia/private/ssh-signer-client
 fi

@@ -4,8 +4,24 @@ export AUSER="jvalette"
 # Source bash aliases
 source ~/.bash_aliases
 
-# Source secrets
-source ~/.secretsrc
+# Secrets live in 1Password (Employee vault): each command reads its own when it runs,
+# so they never sit in the shell's environment
+alcli() {
+    local token
+    token=$(op read "op://Employee/GitHub token - alcli/credential") || return 1
+    GITHUB_PAT=$token command alcli "$@"
+}
+
+# The token lets brew download ssh-signer-client from Algolia's private releases
+brew() {
+    case $1 in
+        install|reinstall|upgrade|fetch|bundle)
+            local token
+            token=$(op read "op://Employee/GitHub token - ssh-key-signer/credential") || return 1
+            HOMEBREW_GITHUB_API_TOKEN=$token command brew "$@" ;;
+        *) command brew "$@" ;;
+    esac
+}
 
 # Enable command auto-completion
 autoload -Uz compinit && compinit

@@ -53,10 +53,6 @@ azure_tenant() {
         | cut -d'"' -f2
 }
 
-secrets_filled() {
-    grep -qvE '^[[:space:]]*(#|$)' ~/.secretsrc 2>/dev/null
-}
-
 todo "Claude Code is signed in" \
     "Run claude and sign in with the Claude account (subscription)" claude_signed_in
 for profile in algolia perso; do
@@ -70,9 +66,6 @@ todo "The Skillkorp input source is enabled" \
 todo "Azure CLI uses the Metis subscription" \
     "Run az login --tenant ${$(azure_tenant):-<Production tenant ID>} and choose Metis (a plain az login fails on the Production tenant's MFA)" \
     azure_on_metis
-todo "~/.secretsrc is filled" \
-    "Feel free to fill it with API keys and tokens (GitHub, Jira, Datadog...), it's sourced by .zshrc and not versioned" \
-    secrets_filled
 
 info "Also make sure that:"
 info "  - fenêtre, Rectangle and Doll are allowed in System Settings → Privacy & Security → Accessibility"

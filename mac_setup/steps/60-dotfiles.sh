@@ -11,15 +11,3 @@ ensure_symlink $REPO_DIR/mac_dotfiles/.zprofile ~/.zprofile
 ensure_symlink $REPO_DIR/mac_dotfiles/.zshrc ~/.zshrc
 ensure_symlink $REPO_DIR/mac_dotfiles/.config/ghostty/config.ghostty ~/.config/ghostty/config.ghostty
 ensure_symlink $REPO_DIR/mac_dotfiles/.ssh/config ~/.ssh/config
-
-# Secrets sourced by .zshrc, kept out of the repo
-if [[ -e ~/.secretsrc ]]; then
-    ok "~/.secretsrc exists"
-elif is_dry_run; then
-    info "[dry-run] would create an empty ~/.secretsrc"
-else
-    mark_changed
-    print '# API keys and tokens (GitHub, Jira, Datadog...), sourced by ~/.zshrc and not versioned.\n# e.g. export GITHUB_TOKEN=...' > ~/.secretsrc
-    chmod 600 ~/.secretsrc
-    ok "Created an empty ~/.secretsrc"
-fi
