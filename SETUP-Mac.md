@@ -15,7 +15,8 @@ mac_setup/setup.sh --dry-run       # Show what would be done
 Packages are listed in [mac_setup/Brewfile](mac_setup/Brewfile).
 
 The first step, `prerequisites`, checks what only I can do by hand (sign in to the Apple account, add a Touch ID fingerprint): it opens the right Settings pane and waits until it's done.
-The last step, `checklist`, lists what's left to do by hand afterwards (sign in to Claude Code and Firefox, fill `~/.secretsrc`...).
+The last step, `checklist`, lists what's left to do by hand afterwards (sign in to Claude Code and Firefox, the Skillkorp keyboard layout, the Azure subscription...).
+SSH keys and tokens come from 1Password (Employee vault), which must be installed from Self Service: the `1password` step checks it.
 
 What follows is not automated yet.
 
