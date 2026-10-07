@@ -1,0 +1,73 @@
+# Shell functions, sourced by ~/.zshrc (macOS; Linux uses common_dotfiles/.bash_aliases)
+
+ddog () {
+	if [ $# -ne 1 ]
+	then
+		echo "Missing a cluster name"
+		return 1
+	fi
+	cluster_name="$1"
+	open -na Firefox --args -P algolia "https://alg-classic-search.datadoghq.com/dashboard/j8u-r3y-u4w/cluster-analysis?tpl_var_cluster-name%5B0%5D=${cluster_name}&tpl_var_cluster-regex%5B0%5D=${cluster_name}-*&live=true"
+}
+
+algoliasaas_setup () {
+	# Detect OS
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		os_prefix="osx"
+	else
+		os_prefix="ubuntu-noble"
+	fi
+
+	if [ "$1" = "debug" ]; then
+		build_profile="${os_prefix}_debug"
+		build_path="build/Debug"
+		build_preset="conan-debug"
+	elif [ "$1" = "release" ]; then
+		build_profile="${os_prefix}_release"
+		build_path="build/Release"
+		build_preset="conan-release"
+	else
+		echo "Usage: algoliasaas_setup <debug|release>"
+		return 1
+	fi
+	source .venv/bin/activate
+	conan install . --profile="$build_profile" --profile:build="$build_profile" --build=missing
+	source "$build_path/generators/conanbuild.sh"
+	cmake --preset "$build_preset"
+	cmake --build -j 6 --preset "$build_preset"
+}
+
+algoliasaas_build() {
+	if [ "$1" = "debug" ]; then
+		build_path="build/Debug"
+		build_preset="conan-debug"
+	elif [ "$1" = "release" ]; then
+		build_path="build/Release"
+		build_preset="conan-release"
+	else
+		echo "Usage: algoliasaas_build <debug|release>"
+		return 1
+	fi
+	source .venv/bin/activate
+	source "$build_path/generators/conanbuild.sh"
+	cmake --build -j 6 --preset "$build_preset"
+}
+
+# Secrets live in 1Password (Employee vault): each command reads its own when it runs,
+# so they never sit in the shell's environment
+alcli() {
+    local token
+    token=$(op read "op://Employee/GitHub token - alcli/credential") || return 1
+    GITHUB_PAT=$token command alcli "$@"
+}
+
+# The token lets brew download ssh-signer-client from Algolia's private releases
+brew() {
+    case $1 in
+        install|reinstall|upgrade|fetch|bundle)
+            local token
+            token=$(op read "op://Employee/GitHub token - ssh-key-signer/credential") || return 1
+            HOMEBREW_GITHUB_API_TOKEN=$token command brew "$@" ;;
+        *) command brew "$@" ;;
+    esac
+}
