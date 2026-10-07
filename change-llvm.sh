@@ -11,7 +11,9 @@ fi
 
 to="$1"
 repo="${HOME}/workspace/AlgoliaSaaS"
-zshrc="${HOME}/.zshrc"
+# ~/.zshrc is a symlink to this repo: edit its target, as sed -i would replace the
+# link with a regular file
+zshrc=${${HOME}/.zshrc:A}
 
 current=$(grep -oE 'llvm@[0-9]+' "$zshrc" | head -1 | sed 's/llvm@//')
 if [[ "$current" == "$to" ]]; then
