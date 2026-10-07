@@ -24,9 +24,10 @@ What follows is not automated yet.
 
 ## Keyboard layout
 
-Choose "French - PC" when I use my own keyboard and "French" when I use the built-in keyboard.
+Use "French" with the Mac's built-in keyboard.
+With my own Skillkorp keyboard, use "French - PC" until the Skillkorp layout exists, then the Skillkorp layout: it's French - PC with the backtick ` as a regular key instead of a dead key.
 
-Useful: remove the backtick ` dead key.
+To create the Skillkorp layout:
 Install Ukelele.
 Make sure current keyboard layout is French - PC
 File → New From Current Input Source
