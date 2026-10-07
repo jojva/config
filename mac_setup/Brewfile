@@ -26,6 +26,7 @@ brew "watch"
 brew "zoxide"
 
 # Apps
+cask "1password-cli"
 cask "claude-code"
 cask "docker-desktop"
 cask "doll"
@@ -42,4 +43,4 @@ cask "sublime-text"
 cask "ukelele"
 cask "visual-studio-code"
 
-# Slack, Zoom, Chrome and 1Password are already installed outside Homebrew by Self Service.
+# Slack, Zoom, Chrome and 1Password (the app) are already installed outside Homebrew by Self Service.

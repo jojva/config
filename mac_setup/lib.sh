@@ -59,6 +59,31 @@ open_work_url() {
     run open -na Firefox --args -P algolia $1
 }
 
+# require <description> <check function> <URL or app to open>
+# For something only I can do: if the check fails, opens where to do it, then waits
+# until the check passes (or I type skip).
+require() {
+    local desc=$1 check=$2 target=$3 answer
+    if $check; then
+        ok $desc
+        return 0
+    fi
+    if is_dry_run; then
+        info "[dry-run] would ask you to: $desc"
+        return 0
+    fi
+    warn "To do: $desc"
+    run open $target
+    until $check; do
+        ask -r "answer?    Press Enter once done (or type 'skip'): "
+        if [[ $answer == skip ]]; then
+            warn "Skipped: $desc"
+            return 0
+        fi
+    done
+    ok $desc
+}
+
 # ensure_brew_trust <tap formula>
 # Homebrew only loads formulae from third-party taps once they're trusted. Trust
 # the formula itself rather than its whole tap.

@@ -13,29 +13,6 @@ fingerprint_ok() {
     (( ${count:-0} > 0 ))
 }
 
-# require <description> <check function> <Settings pane URL>
-require() {
-    local desc=$1 check=$2 pane=$3 answer
-    if $check; then
-        ok $desc
-        return 0
-    fi
-    if is_dry_run; then
-        info "[dry-run] would ask you to: $desc"
-        return 0
-    fi
-    warn "To do: $desc"
-    run open $pane
-    until $check; do
-        ask -r "answer?    Press Enter once done (or type 'skip'): "
-        if [[ $answer == skip ]]; then
-            warn "Skipped: $desc"
-            return 0
-        fi
-    done
-    ok $desc
-}
-
 require "Sign in to the Apple account" apple_account_ok \
     "x-apple.systempreferences:com.apple.systempreferences.AppleIDSettings"
 require "Add a fingerprint to Touch ID" fingerprint_ok \
