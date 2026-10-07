@@ -25,3 +25,10 @@ User-wide rules, versioned in https://github.com/jojva/config and linked as both
 - If a task needs a secret, ask me to provide it in a way that doesn't expose it
   (e.g. `op run`), or ask me to run the command myself.
 - Never write a secret into a file, a commit, a log or a command's output.
+
+## Settings of my apps
+
+- Unless I asked for that change, ask me before you edit the configuration or settings
+  of my personal apps (VSCode, terminal, shell, git config...), even when the change
+  fixes the problem I asked about. Tell me which file and setting you would change,
+  and to what value.
