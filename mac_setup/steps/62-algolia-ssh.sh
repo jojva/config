@@ -33,11 +33,16 @@ else
     fi
 fi
 
-# Keep the passphrase in the keychain
+# Keep the passphrase in the keychain. The macOS agent forgets its keys at each
+# logout: --apple-load-keychain reloads, silently, those whose passphrase is in the
+# keychain (UseKeychain in .ssh/config does the same when connecting).
+in_agent() {
+    ssh-add -l 2>/dev/null | grep -qF "$(ssh-keygen -lf $key.pub 2>/dev/null | cut -d' ' -f2)"
+}
 if ssh-keygen -y -P "" -f $key >/dev/null 2>&1; then
     ok "$key has no passphrase"
-elif ssh-add -l 2>/dev/null | grep -qF "$(ssh-keygen -lf $key 2>/dev/null | cut -d' ' -f2)"; then
-    ok "$key is in the SSH agent"
+elif in_agent || { ssh-add --apple-load-keychain -q >/dev/null 2>&1; in_agent }; then
+    ok "$key's passphrase is in the keychain"
 elif [[ -f $key ]]; then
     run ssh-add --apple-use-keychain $key
 fi

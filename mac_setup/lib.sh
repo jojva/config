@@ -12,6 +12,9 @@ DRY_RUN=${DRY_RUN:-0}
 WORKSPACE_DIR=$HOME/workspace
 DEV_DIR=$HOME/dev
 
+# 1Password's SSH agent, which holds the GitHub key
+ONEPASSWORD_AGENT_SOCKET=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
 # Make Homebrew available in every step, even right after its installation.
 if [[ -x /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"

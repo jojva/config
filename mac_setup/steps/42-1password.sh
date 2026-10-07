@@ -4,7 +4,6 @@
 source ${0:A:h}/../lib.sh
 
 app=/Applications/1Password.app
-agent_socket=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
 app_installed() { [[ -d $app ]] }
 
@@ -17,7 +16,7 @@ cli_integrated() {
 # ssh-add -l exits with 1 when the agent answers without keys, 2 when it doesn't answer
 ssh_agent_on() {
     local code=0
-    SSH_AUTH_SOCK=$agent_socket ssh-add -l >/dev/null 2>&1 || code=$?
+    SSH_AUTH_SOCK=$ONEPASSWORD_AGENT_SOCKET ssh-add -l >/dev/null 2>&1 || code=$?
     (( code != 2 ))
 }
 
