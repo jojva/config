@@ -25,18 +25,20 @@ fi
 echo "==> Installing llvm@${to} and lld@${to} via Homebrew"
 brew install "llvm@${to}" "lld@${to}"
 
-echo "==> Updating ${zshrc}"
-sed -i '' -E "s/(llvm|lld)@[0-9]+/\1@${to}/g" "$zshrc"
-
-echo "==> Reloading shell environment"
-source "$zshrc"
-echo "    clang++ is now: $(which clang++)"
-
 echo "==> Cleaning build directory"
 rm -rf "${repo}/build"
 
 echo "==> Refreshing conan profile"
 source "${repo}/.venv/bin/activate"
 conan config install "${repo}/tools/conan/config"
+
+# Update .zshrc last: the version check above reads it, so a run that fails before
+# this point can be re-run instead of exiting with "nothing to do"
+echo "==> Updating ${zshrc}"
+sed -i '' -E "s/(llvm|lld)@[0-9]+/\1@${to}/g" "$zshrc"
+
+echo "==> Reloading shell environment"
+source "$zshrc"
+echo "    clang++ is now: $(which clang++)"
 
 echo "==> Done. You may now source your shell configuration and rebuild AlgoliaSaaS with the new LLVM toolchain."
