@@ -32,7 +32,7 @@ algoliasaas_setup () {
 	conan install . --profile="$build_profile" --profile:build="$build_profile" --build=missing
 	source "$build_path/generators/conanbuild.sh"
 	cmake --preset "$build_preset"
-	cmake --build -j 6 --preset "$build_preset"
+	cmake --build -j 12 --preset "$build_preset"
 }
 
 algoliasaas_build() {
@@ -48,7 +48,7 @@ algoliasaas_build() {
 	fi
 	source .venv/bin/activate
 	source "$build_path/generators/conanbuild.sh"
-	cmake --build -j 6 --preset "$build_preset"
+	cmake --build -j 12 --preset "$build_preset"
 }
 
 alias ls='ls -GhF --color=auto'
