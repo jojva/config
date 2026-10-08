@@ -7,7 +7,6 @@ alias g='git'
 alias k='kubectl'
 # To add silversearcher's colors to ripgrep
 alias rg='rg --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold'
-alias ssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias update='brew update && brew upgrade -y'
 alias watch='watch --color -n 0.1'
 alias ..="cd .."
