@@ -50,7 +50,7 @@ algoliasaas_build() {
 	fi
 	source .venv/bin/activate
 	source "$build_path/generators/conanbuild.sh"
-	cmake --build -j 6 --preset "$build_preset"
+	cmake --build -j 12 --preset "$build_preset"
 }
 
 # Override alcli to fetch GITHUB_PAT in 1Password
