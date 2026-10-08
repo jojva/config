@@ -18,7 +18,6 @@ alias ......="cd ../../../../.."
 
 # Algolia
 alias ee='sudo killall BuildServer ; sudo killall -9 nginx ; ./tools/launch_builder.sh & ./test/e2e/launch_nginx.sh &'
-alias cpj='cp -r ~/workspace/config/tests_jojo/ ~/workspace/AlgoliaSaaS/test/e2e/'
 
 # AlgoliaSaaS with Conan
 alias asd='algoliasaas_setup debug'
