@@ -9,6 +9,7 @@ repos=(
     dictionaries
     engineering-duty
     metis
+    metis-release-manager
 )
 
 for repo in $repos; do
