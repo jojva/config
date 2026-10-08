@@ -24,11 +24,11 @@ setopt HIST_IGNORE_SPACE    # Do not display commands that start with a space
 export HOMEBREW_AUTO_UPDATE_SECS=86400
 
 # AlgoliaSaaS: setup clang
-export PATH="/opt/homebrew/opt/llvm@21/bin:$PATH"
-export CC="/opt/homebrew/opt/llvm@21/bin/clang"
-export CXX="/opt/homebrew/opt/llvm@21/bin/clang++"
-export PATH="/opt/homebrew/opt/lld@21/bin:$PATH"
-export LD="/opt/homebrew/opt/lld@21/bin/lld"
+export PATH="/opt/homebrew/opt/llvm@22/bin:$PATH"
+export CC="/opt/homebrew/opt/llvm@22/bin/clang"
+export CXX="/opt/homebrew/opt/llvm@22/bin/clang++"
+export PATH="/opt/homebrew/opt/lld@22/bin:$PATH"
+export LD="/opt/homebrew/opt/lld@22/bin/lld"
 
 # Characters that are part of a word (for fast navigation).
 # Default is '*?_-.[]~=/&;!#$%^(){}<>', I removed the '/' to treat paths as separate words.
