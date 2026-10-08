@@ -58,7 +58,8 @@ run() {
 
 # open_work_url <url>
 # Opens a URL in the Firefox algolia profile, where I'm signed in to work accounts
-# (the default browser is the perso profile).
+# (the default browser is the perso profile). The firefox-profiles step creates
+# that profile, so it must come before any step that calls this.
 open_work_url() {
     run open -na Firefox --args -P algolia $1
 }

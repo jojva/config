@@ -18,6 +18,9 @@ usage() {
     sed -n '4,9s/^# \{0,1\}//p' $script
 }
 
+# Steps run in file name order. The tens digit is the phase: 1 macOS basics,
+# 2 packages, 3 browser, keys and dotfiles, 4 work access, 5 settings and apps,
+# 6 wrap-up.
 steps=( $SETUP_DIR/steps/*.sh(N) )
 step_name() { local n=${1:t:r}; print -r -- ${n#<->-} }
 names=()
