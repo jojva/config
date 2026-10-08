@@ -70,7 +70,7 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 # Algolia
-# alias ninja='~/dev/mold/build/mold -run ninja -j 6'
+# alias ninja='~/dev/mold/build/mold -run ninja -j 12'
 alias nd='ninja -C build/Debug'
 alias nr='ninja -C build/Release'
 alias afull='adebug ; arelease ; asanitize'
