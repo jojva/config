@@ -19,12 +19,6 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 # Algolia
-alias nd='ninja -C build/Debug'
-alias nr='ninja -C build/Release'
-alias afull='adebug ; arelease ; asanitize'
-alias arelease='cmake -H. -Bbuild/release -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && nr'
-alias adebug='cmake -H. -Bbuild/debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && nd'
-alias asanitize='cmake -H. -Bbuild/sanitize -DCMAKE_BUILD_TYPE=Sanitize -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -GNinja && ns'
 alias ee='sudo killall BuildServer ; sudo killall -9 nginx ; ./tools/launch_builder.sh & ./test/e2e/launch_nginx.sh &'
 alias cpj='cp -r ~/workspace/config/tests_jojo/ ~/workspace/AlgoliaSaaS/test/e2e/'
 
