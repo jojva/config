@@ -16,6 +16,7 @@ User-wide rules, versioned in https://github.com/jojva/config and linked as both
   description.
 - The agent that creates a worktree is responsible for removing it
   (`git worktree remove`) once the work is done: merged, abandoned, or when I say so.
+  Same thing for the local branch.
 
 ## Pull Requests
 
