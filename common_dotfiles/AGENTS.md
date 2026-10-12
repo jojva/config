@@ -22,6 +22,11 @@ User-wide rules, versioned in https://github.com/jojva/config and linked as both
 - Always open PRs as draft.
 - Some repositories require the PR description to be written by a human. In these cases, keep the PR template of the repo, I'll fill the description later.
 
+## Communication
+
+Whenever you've created a PR, or a branch, or a worktree, or a combination of these, please tell me clearly. For example:
+"I created PR <link>, based on branch <branch>, and worktree <worktree>".
+
 ## Secrets
 
 - Never read, print or search files that hold secrets: `.env` files, `~/.secretsrc`,
