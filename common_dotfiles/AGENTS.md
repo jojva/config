@@ -17,6 +17,11 @@ User-wide rules, versioned in https://github.com/jojva/config and linked as both
 - The agent that creates a worktree is responsible for removing it
   (`git worktree remove`) once the work is done: merged, abandoned, or when I say so.
 
+## Pull Requests
+
+- Always open PRs as draft.
+- Some repositories require the PR description to be written by a human. In these cases, keep the PR template of the repo, I'll fill the description later.
+
 ## Secrets
 
 - Never read, print or search files that hold secrets: `.env` files, `~/.secretsrc`,
