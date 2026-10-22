@@ -17,6 +17,7 @@ User-wide rules, versioned in https://github.com/jojva/config and linked as both
 - The agent that creates a worktree is responsible for removing it
   (`git worktree remove`) once the work is done: merged, abandoned, or when I say so.
   Same thing for the local branch.
+- Do not touch other session's work.
 
 ## Pull Requests
 
@@ -33,6 +34,9 @@ Whenever you've created a PR, or a branch, or a worktree, or a combination of th
 - Never read, print or search files that hold secrets: `.env` files, `~/.secretsrc`,
   private SSH keys, `~/.aws/credentials`, tokens and auth files of other tools.
 - Never print environment variables (`env`, `printenv`, `echo $SOME_TOKEN`...).
+- Treat URLs that carry credentials as secrets: Slack/Teams/Discord incoming webhooks,
+  and URLs with tokens in the query string or user info. When listing webhooks or
+  integration settings, print only ids and hosts.
 - If a task needs a secret, ask me to provide it in a way that doesn't expose it
   (e.g. `op run`), or ask me to run the command myself.
 - Never write a secret into a file, a commit, a log or a command's output.
