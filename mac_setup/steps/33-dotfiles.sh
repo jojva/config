@@ -6,6 +6,7 @@ source ${0:A:h}/../lib.sh
 ensure_symlink $REPO_DIR/common_dotfiles/.gitconfig ~/.gitconfig
 ensure_symlink $REPO_DIR/common_dotfiles/AGENTS.md ~/.codex/AGENTS.md
 ensure_symlink $REPO_DIR/common_dotfiles/AGENTS.md ~/.claude/CLAUDE.md
+ensure_symlink $REPO_DIR/common_dotfiles/.claude/skills/gork ~/.claude/skills/gork
 ensure_symlink $REPO_DIR/mac_dotfiles/.zprofile ~/.zprofile
 ensure_symlink $REPO_DIR/mac_dotfiles/.zshrc ~/.zshrc
 ensure_symlink $REPO_DIR/mac_dotfiles/.zsh_aliases ~/.zsh_aliases
