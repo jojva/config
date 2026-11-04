@@ -24,6 +24,12 @@ User-wide rules, versioned in https://github.com/jojva/config and linked as both
 - Always open PRs as draft.
 - Some repositories require the PR description to be written by a human. In these cases, keep the PR template of the repo, I'll fill the description later.
 
+## Optimistic push
+
+- When the task includes a push, you may push before the local build and tests have
+  passed, if you are confident they will. CI then starts sooner: when you're right,
+  that's CI time gained.
+
 ## Communication
 
 Whenever you've created a PR, or a branch, or a worktree, or a combination of these, please tell me clearly. For example:
