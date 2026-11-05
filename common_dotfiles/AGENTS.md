@@ -35,6 +35,16 @@ User-wide rules, versioned in https://github.com/jojva/config and linked as both
 Whenever you've created a PR, or a branch, or a worktree, or a combination of these, please tell me clearly. For example:
 "I created PR <link>, based on branch <branch>, and worktree <worktree>".
 
+## Writing as me
+
+- Before you write text that other people will read under my name, read `joris.md` and
+  follow it. It sits next to this file, as `~/.claude/joris.md` and `~/.codex/joris.md`.
+  This covers PR titles and descriptions, review comments and replies, commit messages,
+  Jira tickets and comments, and Slack messages. It does not cover your replies to me.
+- Keep `joris.md` up to date. When you see me rewrite text you drafted, or read text I
+  wrote myself, and it shows a habit that `joris.md` misses or contradicts, update it in
+  the same session. Its last section says how.
+
 ## Secrets
 
 - Never read, print or search files that hold secrets: `.env` files, `~/.secretsrc`,
