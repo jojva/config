@@ -41,9 +41,6 @@ Whenever you've created a PR, or a branch, or a worktree, or a combination of th
   follow it. It sits next to this file, as `~/.claude/joris.md` and `~/.codex/joris.md`.
   This covers PR titles and descriptions, review comments and replies, commit messages,
   Jira tickets and comments, and Slack messages. It does not cover your replies to me.
-- Keep `joris.md` up to date. When you see me rewrite text you drafted, or read text I
-  wrote myself, and it shows a habit that `joris.md` misses or contradicts, update it in
-  the same session. Its last section says how.
 
 ## Secrets
 

@@ -2,7 +2,7 @@
 
 This file describes how I write, so that what you write under my name sounds like me. It
 comes from my own PR descriptions, review comments and Slack messages, and from the changes
-I make to your drafts. Agents keep it up to date: see the last section.
+I make to your drafts.
 
 Repository conventions come first: PR templates, section names, ticket syntax, the agent
 signature. This file is about the words inside them.
@@ -67,6 +67,8 @@ people, customers, hosts, channels or internal projects.
   Revert, Make, Support): "Fix a bug in `DumpTool` using the wrong loop index." Don't open
   with the state after the change ("`DumpTool` now lists ... again", "All code now gets
   ...").
+- A visible behavior change gets its own paragraph under What, opened with "Behavior
+  change:": what used to happen, what happens now, and why it's now possible.
 - Ticket on its own line: `SRCH-1234 #done`, or "Contributes to SRCH-1234." when the PR is
   one step of the ticket. The plain key, not a markdown link.
 - Why: one or two blunt sentences. "It was causing crashes in prod." "The retry logic was
@@ -168,6 +170,9 @@ Paraphrased pairs from my edits. The first line is the agent's draft, the second
   - A paragraph on the retry mechanism, the project that relies on it, and what each
     component does.
   - "The retry logic was broken." (The mechanism moves to How, in a few sentences.)
+- How:
+  - Six bullets, one per design decision and edge case, then a "Left for later" list.
+  - "Add `parseFoo()` and `formatFoo()` to read and write the new format."
 - Scope:
   - "Replace the six remaining `std::iota` calls with `std::ranges::iota`."
   - "Replace `std::iota` with `std::ranges::iota`."
@@ -192,31 +197,3 @@ Paraphrased pairs from my edits. The first line is the agent's draft, the second
 - "We":
   - "The line can go once the image moves off Python 3.10."
   - "This line can be removed once we drop the old images."
-
-## Keeping this file up to date
-
-Update this file when:
-- I rewrote text you drafted: a PR description, a ticket, a comment. Compare your draft
-  with my version: what I cut, reworded or added.
-- You read text I wrote myself, such as a PR description, a review comment or a Slack
-  message, and it shows a habit this file misses or contradicts.
-- I tell you how I want something written.
-
-How:
-- Turn what you saw into a general rule, with a short example. Add a before/after pair to
-  "Rewrites of agent drafts" when it shows the rule best.
-- Edit the section that covers it. Merge with an existing rule instead of adding a
-  near-duplicate. When my recent writing contradicts a rule, change the rule.
-- A one-off edit is not a rule, unless I say so or you see the same change elsewhere.
-- Paraphrase every example: no names of people or customers, hosts, channels, ticket
-  numbers or internal project details.
-- Keep the file under about 250 lines. Tighten old rules rather than letting it grow.
-- Tell me in one line what you changed, and leave the change uncommitted: I review and
-  commit it myself.
-
-To find my rewrites of a PR description: GitHub keeps every version in GraphQL
-`pullRequest { userContentEdits(first: 50) { nodes { editedAt diff } } }`, where `diff`
-holds the full body of that version. Versions saved from the web UI have CRLF line endings,
-and versions pushed with `gh` have LF. So a CRLF version right after an LF one is usually
-my rewrite of an agent draft. Every version shows me as the editor, so that field tells you
-nothing.
