@@ -35,6 +35,16 @@ User-wide rules, versioned in https://github.com/jojva/config and linked as both
 Whenever you've created a PR, or a branch, or a worktree, or a combination of these, please tell me clearly. For example:
 "I created PR <link>, based on branch <branch>, and worktree <worktree>".
 
+## Cleaner alternatives
+
+- When there is a cleaner approach than the one you are about to take (better
+  interface, easier to read), propose it too, even if it is more involved (bigger
+  diff, more work).
+- Give the pros and cons of each option, and a rough idea of the extra work. I pick
+  one depending on the time I have and the complexity of the options. Do not choose
+  the smaller diff on my behalf.
+- This also applies when you compare or apply a change that someone else wrote.
+
 ## Writing as me
 
 - Before you write text that other people will read under my name, read `joris.md` and
