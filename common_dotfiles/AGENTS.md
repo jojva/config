@@ -35,6 +35,10 @@ User-wide rules, versioned in https://github.com/jojva/config and linked as both
 Whenever you've created a PR, or a branch, or a worktree, or a combination of these, please tell me clearly. For example:
 "I created PR <link>, based on branch <branch>, and worktree <worktree>".
 
+Do it as soon as the PR is open, so I can look at it right away. When you pushed
+optimistically, don't wait for the local build and tests to finish: report them in a
+later message.
+
 ## Cleaner alternatives
 
 - When there is a cleaner approach than the one you are about to take (better
