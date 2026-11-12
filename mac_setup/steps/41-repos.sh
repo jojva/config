@@ -6,10 +6,13 @@ repos=(
     AlgoliaSaaS
     AlgoliaWeb
     alcli
+    atlas-project
+    chef
     dictionaries
     engineering-duty
     metis
     metis-release-manager
+    salt-states
 )
 
 for repo in $repos; do
